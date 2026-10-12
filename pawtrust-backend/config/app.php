@@ -69,6 +69,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Skip Listing Payment (dev/local only)
+    |--------------------------------------------------------------------------
+    |
+    | When true, listings are created directly as 'active' (local dev / tests).
+    | When false, listings are created as 'pending_payment' until Stripe
+    | Checkout completes (production).
+    |
+    */
+
+    'skip_listing_payment' => (bool) env('SKIP_LISTING_PAYMENT', true),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Locale Configuration
     |--------------------------------------------------------------------------
     |

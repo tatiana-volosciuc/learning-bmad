@@ -175,6 +175,14 @@
     "experience_years_plural": "{{count}} years experience",
     "review_placeholder": "No reviews yet"
   },
+  "payment": {
+    "status_pending": "Payment Pending",
+    "btn_complete_payment": "Complete Payment",
+    "success_toast": "Your listing is now live!",
+    "cancelled_toast": "Payment cancelled. Your listing is still pending.",
+    "standard_price": "Standard listing — €3",
+    "featured_price": "Featured listing — €8"
+  },
   "badge": {
     "verified_label": "Verified",
     "unverified_label": "Unverified",

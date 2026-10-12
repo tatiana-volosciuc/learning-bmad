@@ -31,13 +31,15 @@ export interface Listing {
   price: string
   currency: 'EUR' | 'MDL' | 'RON'
   location: string | null
-  status: 'draft' | 'active' | 'sold' | 'expired'
+  status: 'draft' | 'pending_payment' | 'active' | 'sold' | 'expired'
   listing_type: 'standard' | 'featured'
   featured_until: string | null
   health_certificate: 'on_file' | null
   photos: ListingPhoto[]
   breeder: BreederSummary | null
   created_at: string
+  listed_at?: string | null
+  can_pay?: boolean
 }
 
 export interface CreateListingPayload {
@@ -62,6 +64,9 @@ export const updateListing = (id: number, payload: Partial<CreateListingPayload>
   axiosClient.put<{ data: Listing }>(`/listings/${id}`, payload)
 
 export const getMyListings = () => axiosClient.get<{ data: Listing[] }>('/breeder/listings')
+
+export const initiateListingPayment = (listingId: number) =>
+  axiosClient.post<{ data: { checkout_url: string } }>(`/listings/${listingId}/payment/initiate`)
 
 export interface ListingSearchParams {
   q?: string

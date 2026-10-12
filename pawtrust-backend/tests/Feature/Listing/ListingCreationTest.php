@@ -61,13 +61,13 @@ class ListingCreationTest extends TestCase
             ->assertStatus(422);
     }
 
-    public function test_listing_created_as_draft_without_payment_bypass(): void
+    public function test_listing_created_as_pending_payment_without_payment_bypass(): void
     {
         config(['app.skip_listing_payment' => false]);
 
         $this->actingAs($this->breeder, 'sanctum')
             ->postJson('/api/v1/listings', $this->validPayload())
-            ->assertJsonPath('data.status', 'draft');
+            ->assertJsonPath('data.status', 'pending_payment');
     }
 
     public function test_listing_created_as_active_with_payment_bypass(): void

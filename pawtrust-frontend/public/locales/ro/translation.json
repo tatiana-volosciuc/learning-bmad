@@ -223,6 +223,14 @@
     "experience_years_plural": "{{count}} ani experiență",
     "review_placeholder": "Fără recenzii încă"
   },
+  "payment": {
+    "status_pending": "Plată în așteptare",
+    "btn_complete_payment": "Finalizează plata",
+    "success_toast": "Anunțul tău este acum activ!",
+    "cancelled_toast": "Plată anulată. Anunțul rămâne în așteptare.",
+    "standard_price": "Anunț standard — €3",
+    "featured_price": "Anunț promovat — €8"
+  },
   "badge": {
     "verified_label": "Verificat",
     "unverified_label": "Neverificat",

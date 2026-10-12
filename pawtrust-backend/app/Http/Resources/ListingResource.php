@@ -24,6 +24,8 @@ class ListingResource extends JsonResource
             'currency'       => $this->currency,
             'location'       => $this->location ?? $this->breederProfile?->location,
             'status'         => $this->status,
+            'listed_at'      => $this->listed_at,
+            'can_pay'        => $this->status === 'pending_payment',
             'listing_type'   => $this->listing_type,
             'featured_until' => $this->featured_until,
             'featured'       => $this->featured_until && $this->featured_until->isFuture(),

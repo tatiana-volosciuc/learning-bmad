@@ -223,6 +223,14 @@
     "experience_years_plural": "{{count}} лет опыта",
     "review_placeholder": "Пока нет отзывов"
   },
+  "payment": {
+    "status_pending": "Ожидается оплата",
+    "btn_complete_payment": "Завершить оплату",
+    "success_toast": "Ваше объявление теперь активно!",
+    "cancelled_toast": "Оплата отменена. Объявление остаётся в ожидании.",
+    "standard_price": "Стандартное объявление — €3",
+    "featured_price": "Продвигаемое объявление — €8"
+  },
   "documents": {
     "types": {
       "kennel_cert": "Свидетельство питомника",

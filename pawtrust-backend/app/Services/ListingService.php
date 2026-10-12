@@ -19,11 +19,13 @@ class ListingService
             ]);
         }
 
-        $status = config('app.skip_listing_payment') ? 'active' : 'draft';
+        $skipPayment = config('app.skip_listing_payment');
+        $status      = $skipPayment ? 'active' : 'pending_payment';
 
         return Listing::create(array_merge($data, [
             'breeder_profile_id' => $profile->id,
             'status'             => $status,
+            'listed_at'          => $skipPayment ? now() : null,
         ]));
     }
 
