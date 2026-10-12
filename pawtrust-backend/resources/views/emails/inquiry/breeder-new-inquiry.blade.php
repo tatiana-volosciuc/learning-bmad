@@ -20,7 +20,7 @@
     <strong>@lang('mail.inquiry.new_inquiry.message_label'):</strong>
   </p>
   <p style="margin: 0 0 24px; line-height: 1.6; color: #374151;">
-    {{ $message ?? __('mail.inquiry.new_inquiry.no_message') }}
+    {{ $inquiryMessage ?? __('mail.inquiry.new_inquiry.no_message') }}
   </p>
 
   <a href="{{ $dashboardUrl }}"

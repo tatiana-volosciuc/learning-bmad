@@ -5,6 +5,7 @@ import { useAuthStore } from '@/store/authStore'
 import { InquireModal } from './InquireModal'
 import { ContactRevealCard } from './ContactRevealCard'
 import type { BreederContact } from '@/api/inquiry.api'
+import { addStoredInquiry } from '@/store/buyerInquiries'
 
 interface Props {
   listingId: number
@@ -44,8 +45,18 @@ export function InquiryCTA({ listingId, listingTitle = '' }: Props) {
         <InquireModal
           listingId={listingId}
           listingTitle={listingTitle}
-          onSuccess={(contact) => {
-            setRevealedContact(contact)
+          onSuccess={(data) => {
+            if (user) {
+              addStoredInquiry(user.id, {
+                inquiryId: data.inquiry_id,
+                listingId,
+                listingTitle,
+                status: data.status,
+                submittedAt: new Date().toISOString(),
+                contact: data.breeder_contact,
+              })
+            }
+            setRevealedContact(data.breeder_contact)
             setModalOpen(false)
           }}
         />

@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\BreederProfile;
 use App\Models\Listing;
 use App\Models\Inquiry;
+use Database\Seeders\RolesAndPermissionsSeeder;
 
 class BreederInquiryListTest extends TestCase
 {
@@ -20,6 +21,7 @@ class BreederInquiryListTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        $this->seed(RolesAndPermissionsSeeder::class);
         $this->breeder = User::factory()->create(['role' => 'breeder']);
         $this->breeder->assignRole('breeder');
         $this->profile = BreederProfile::factory()->create(['user_id' => $this->breeder->id]);
@@ -83,12 +85,15 @@ class BreederInquiryListTest extends TestCase
 
     public function test_unread_count_returns_correct_number(): void
     {
-        $buyer = User::factory()->create(['role' => 'buyer']);
-        Inquiry::factory()->count(3)->create([
-            'listing_id' => $this->listing->id,
-            'buyer_id'   => $buyer->id,
-            'read_at'    => null,
-        ]);
+        // Distinct buyers — (listing_id, buyer_id) is unique, one buyer can't inquire twice on the same listing
+        $buyers = User::factory()->count(3)->create(['role' => 'buyer']);
+        foreach ($buyers as $buyer) {
+            Inquiry::factory()->create([
+                'listing_id' => $this->listing->id,
+                'buyer_id'   => $buyer->id,
+                'read_at'    => null,
+            ]);
+        }
 
         $this->actingAs($this->breeder, 'sanctum')
             ->getJson('/api/v1/breeder/inquiries/unread-count')

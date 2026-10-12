@@ -10,6 +10,7 @@ use App\Models\BreederProfile;
 use App\Models\Listing;
 use App\Models\Inquiry;
 use App\Mail\BreederNewInquiryMail;
+use Database\Seeders\RolesAndPermissionsSeeder;
 
 class BreederInquiryNotificationTest extends TestCase
 {
@@ -22,6 +23,7 @@ class BreederInquiryNotificationTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        $this->seed(RolesAndPermissionsSeeder::class);
         Mail::fake();
 
         $this->buyer = User::factory()->create(['role' => 'buyer']);
@@ -85,6 +87,6 @@ class BreederInquiryNotificationTest extends TestCase
         $this->actingAs($this->buyer, 'sanctum')
             ->postJson("/api/v1/listings/{$this->listing->id}/inquire", []);
 
-        Mail::assertQueued(BreederNewInquiryMail::class, fn ($mail) => $mail->message === null);
+        Mail::assertQueued(BreederNewInquiryMail::class, fn ($mail) => $mail->inquiryMessage === null);
     }
 }

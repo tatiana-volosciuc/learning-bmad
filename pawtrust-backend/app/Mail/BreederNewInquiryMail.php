@@ -17,15 +17,16 @@ class BreederNewInquiryMail extends Mailable implements ShouldQueue
 
     public string $buyerName;
     public string $listingTitle;
-    public ?string $message;
+    // Named inquiryMessage (not message) — Laravel injects its own $message (Illuminate\Mail\Message) into every mail view.
+    public ?string $inquiryMessage;
     public string $dashboardUrl;
 
     public function __construct(Inquiry $inquiry)
     {
-        $this->buyerName    = $inquiry->buyer->name;
-        $this->listingTitle = $inquiry->listing->title;
-        $this->message      = $inquiry->message;
-        $this->dashboardUrl = config('app.frontend_url', config('app.url')) . '/dashboard/breeder/inquiries';
+        $this->buyerName      = $inquiry->buyer->name;
+        $this->listingTitle   = $inquiry->listing->title;
+        $this->inquiryMessage = $inquiry->message;
+        $this->dashboardUrl   = config('app.frontend_url', config('app.url')) . '/dashboard/breeder/inquiries';
     }
 
     public function envelope(): Envelope

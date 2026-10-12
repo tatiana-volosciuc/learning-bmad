@@ -87,6 +87,6 @@ describe('BreederInquiryList', () => {
     expect(prevBtn).toBeDisabled()
 
     fireEvent.click(nextBtn)
-    expect(screen.getByText('2 / 3')).toBeInTheDocument()
+    expect(await screen.findByText('2 / 3')).toBeInTheDocument()
   })
 })

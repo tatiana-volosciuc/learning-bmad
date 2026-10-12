@@ -111,6 +111,12 @@
       "toast_success": "Решение сохранено."
     }
   },
+  "buyer_dashboard": {
+    "btn_view_documents": "Посмотреть документы",
+    "no_documents": "Для этого объявления нет доступных документов.",
+    "documents_loading": "Загрузка документов...",
+    "view_contact_details": "Посмотреть контактные данные"
+  },
   "breeder_dashboard": {
     "inquiries_nav": "Запросы",
     "inquiries_title": "Мои запросы",

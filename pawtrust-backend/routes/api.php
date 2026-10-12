@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\V1\BreedController;
 use App\Http\Controllers\Api\V1\Breeder\BreederInquiryController;
 use App\Http\Controllers\Api\V1\BreederDocumentController;
 use App\Http\Controllers\Api\V1\BreederProfileController;
+use App\Http\Controllers\Api\V1\Buyer\InquiryDocumentController;
 use App\Http\Controllers\Api\V1\HealthCertificateController;
 use App\Http\Controllers\Api\V1\InquiryController;
 use App\Http\Controllers\Api\V1\ListingController;
@@ -45,6 +46,10 @@ Route::prefix('v1')->group(function () {
     // Buyer inquiry route
     Route::post('/listings/{listing}/inquire', [InquiryController::class, 'store'])
         ->middleware(['auth:sanctum', 'role:buyer']);
+
+    // Post-inquiry document access — ownership enforced in controller, not role-gated
+    Route::get('/inquiries/{inquiry}/documents', [InquiryDocumentController::class, 'index'])
+        ->middleware('auth:sanctum');
 
     // Authenticated breeder routes
     Route::middleware(['auth:sanctum', 'role:breeder'])->group(function () {

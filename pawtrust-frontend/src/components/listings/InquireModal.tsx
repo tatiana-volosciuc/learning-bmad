@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
-import { submitInquiry, type BreederContact } from '@/api/inquiry.api'
+import { submitInquiry, type BreederContact, type InquiryResponse } from '@/api/inquiry.api'
 import { ContactRevealCard } from './ContactRevealCard'
 
 interface Props {
   listingId: number
   listingTitle: string
-  onSuccess: (contact: BreederContact) => void
+  onSuccess: (data: InquiryResponse) => void
 }
 
 const MAX_LENGTH = 500
@@ -21,9 +21,8 @@ export function InquireModal({ listingId, listingTitle, onSuccess }: Props) {
   const mutation = useMutation({
     mutationFn: () => submitInquiry(listingId, message.trim() || undefined),
     onSuccess: (res) => {
-      const contact = res.data.data.breeder_contact
-      setRevealedContact(contact)
-      onSuccess(contact)
+      setRevealedContact(res.data.data.breeder_contact)
+      onSuccess(res.data.data)
     },
     onError: (err: any) => {
       if (err?.response?.status === 409) {

@@ -111,6 +111,12 @@
       "toast_success": "Decizia a fost salvată."
     }
   },
+  "buyer_dashboard": {
+    "btn_view_documents": "Vezi documentele",
+    "no_documents": "Nu există documente disponibile pentru acest anunț.",
+    "documents_loading": "Se încarcă documentele...",
+    "view_contact_details": "Vezi datele de contact"
+  },
   "breeder_dashboard": {
     "inquiries_nav": "Solicit\u0103ri",
     "inquiries_title": "Solicit\u0103rile mele",
