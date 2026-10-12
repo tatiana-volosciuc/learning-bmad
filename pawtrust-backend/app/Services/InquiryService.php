@@ -3,10 +3,12 @@
 namespace App\Services;
 
 use App\Exceptions\DuplicateInquiryException;
+use App\Mail\BreederNewInquiryMail;
 use App\Models\Inquiry;
 use App\Models\Listing;
 use App\Models\User;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Mail;
 
 class InquiryService
 {
@@ -42,6 +44,12 @@ class InquiryService
 
         // Eager load for InquiryResource (avoids N+1)
         $inquiry->load('listing.breederProfile.user');
+
+        // Dispatch notification email outside any DB transaction — async via queue
+        $breeder = $listing->breederProfile->user;
+        Mail::to($breeder->email)
+            ->locale($breeder->locale)
+            ->queue(new BreederNewInquiryMail($inquiry->load(['buyer', 'listing'])));
 
         return $inquiry;
     }

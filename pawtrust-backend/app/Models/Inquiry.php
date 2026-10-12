@@ -15,6 +15,11 @@ class Inquiry extends Model
         'buyer_id',
         'message',
         'status',
+        'read_at',
+    ];
+
+    protected $casts = [
+        'read_at' => 'datetime',
     ];
 
     public function listing(): BelongsTo

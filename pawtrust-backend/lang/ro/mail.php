@@ -29,4 +29,16 @@ return [
             'cta'            => 'Retrimite cererea',
         ],
     ],
+
+    'inquiry' => [
+        'new_inquiry' => [
+            'subject'       => 'Solicitare nouă pentru anunțul ":listing"',
+            'title'         => 'Ai primit o solicitare nouă',
+            'buyer_label'   => 'Cumpărător',
+            'listing_label' => 'Anunț',
+            'message_label' => 'Mesaj',
+            'no_message'    => 'Niciun mesaj furnizat',
+            'cta'           => 'Vezi solicitarea',
+        ],
+    ],
 ];

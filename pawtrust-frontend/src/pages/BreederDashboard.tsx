@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { useAuthStore } from '@/store/authStore'
 import {
@@ -15,6 +15,8 @@ import { DocumentUpload } from '@/components/breeders/DocumentUpload'
 import { DocumentList } from '@/components/breeders/DocumentList'
 import VerificationStatusCard from '@/components/breeders/VerificationStatusCard'
 import VerificationSubmitModal from '@/components/breeders/VerificationSubmitModal'
+import { BreederInquiryList } from '@/components/breeder/BreederInquiryList'
+import { getBreederUnreadCount } from '@/api/inquiry.api'
 
 const STATUS_BADGE: Record<Listing['status'], string> = {
   draft: 'bg-gray-100 text-gray-600',
@@ -34,10 +36,15 @@ function StatCard({ label, value }: { label: string; value: string | number }) {
 
 export default function BreederDashboard() {
   const { t } = useTranslation()
+  const location = useLocation()
+  const navigate = useNavigate()
   const user = useAuthStore((s) => s.user)
   const queryClient = useQueryClient()
   const [showProfileForm, setShowProfileForm] = useState(false)
-  const [activeTab, setActiveTab] = useState<'listings' | 'documents' | 'verification'>('listings')
+  const [selectedTab, setSelectedTab] = useState<'listings' | 'documents' | 'verification'>(
+    'listings'
+  )
+  const activeTab = location.pathname === '/dashboard/breeder/inquiries' ? 'inquiries' : selectedTab
   const [showVerificationModal, setShowVerificationModal] = useState(false)
 
   const { data: profileData } = useQuery({
@@ -57,6 +64,15 @@ export default function BreederDashboard() {
     queryFn: () => getVerificationStatus().then((r) => r.data.data),
     retry: false,
   })
+
+  const { data: unreadData } = useQuery({
+    queryKey: ['breeder', 'inquiries', 'unread-count'],
+    queryFn: () => getBreederUnreadCount().then((r) => r.data.data),
+    staleTime: 60_000,
+    retry: false,
+  })
+
+  const unreadCount = unreadData?.unread_count ?? 0
 
   const activeCount = listings?.filter((l) => l.status === 'active').length ?? 0
 
@@ -124,20 +140,38 @@ export default function BreederDashboard() {
 
         {/* Tabs */}
         <div className="flex border-b border-gray-200 mb-6">
-          {(['listings', 'documents', 'verification'] as const).map((tab) => (
+          {(['listings', 'inquiries', 'documents', 'verification'] as const).map((tab) => (
             <button
               key={tab}
               type="button"
-              onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 -mb-px text-sm font-medium border-b-2 transition-colors ${
+              onClick={() => {
+                if (tab === 'inquiries') {
+                  navigate('/dashboard/breeder/inquiries')
+                } else {
+                  setSelectedTab(tab)
+                  navigate('/breeder/dashboard')
+                }
+              }}
+              className={`px-4 py-2 -mb-px text-sm font-medium border-b-2 transition-colors flex items-center gap-1.5 ${
                 activeTab === tab
                   ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-500 hover:text-gray-700'
               }`}
             >
-              {t(
-                `breeder.dashboard.tabs.${tab}`,
-                tab === 'listings' ? 'Listings' : tab === 'documents' ? 'Documents' : 'Verification'
+              {tab === 'inquiries'
+                ? t('breeder_dashboard.inquiries_nav', 'Inquiries')
+                : t(
+                    `breeder.dashboard.tabs.${tab}`,
+                    tab === 'listings'
+                      ? 'Listings'
+                      : tab === 'documents'
+                        ? 'Documents'
+                        : 'Verification'
+                  )}
+              {tab === 'inquiries' && unreadCount > 0 && (
+                <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px] font-bold leading-none">
+                  {unreadCount}
+                </span>
               )}
             </button>
           ))}
@@ -211,6 +245,16 @@ export default function BreederDashboard() {
                 </table>
               </div>
             )}
+          </div>
+        )}
+
+        {/* Inquiries tab */}
+        {activeTab === 'inquiries' && (
+          <div>
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+              {t('breeder_dashboard.inquiries_title', 'My Inquiries')}
+            </h2>
+            <BreederInquiryList />
           </div>
         )}
 

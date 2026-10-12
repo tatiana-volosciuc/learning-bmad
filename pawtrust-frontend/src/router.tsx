@@ -56,6 +56,7 @@ const router = createBrowserRouter([
     children: [
       { path: '/buyer/dashboard', element: <BuyerDashboard /> },
       { path: '/breeder/dashboard', element: <BreederDashboard /> },
+      { path: '/dashboard/breeder/inquiries', element: <BreederDashboard /> },
       { path: '/sitter/dashboard', element: <SitterDashboard /> },
       { path: '/profile', element: <ProfilePage /> },
       // Buyer sub-routes
