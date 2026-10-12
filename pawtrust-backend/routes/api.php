@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\V1\ListingController;
 use App\Http\Controllers\Api\V1\ListingPhotoController;
 use App\Http\Controllers\Api\V1\ReviewController;
 use App\Http\Controllers\Api\V1\Sitter\SitterDashboardController;
+use App\Http\Controllers\Api\V1\SitterDiscoveryController;
 use App\Http\Controllers\Api\V1\Sitter\SitterPortfolioController;
 use App\Http\Controllers\Api\V1\Sitter\SitterProfileController as SitterProfileApiController;
 use App\Http\Controllers\Api\V1\SitterContactController;
@@ -47,6 +48,7 @@ Route::prefix('v1')->group(function () {
     Route::get('/breeds',        [BreedController::class, 'index']);
 
     // Public sitter routes
+    Route::get('/sitters',               [SitterDiscoveryController::class, 'index']);
     Route::get('/sitters/{id}',          [SitterProfileApiController::class, 'show']);
     Route::post('/sitters/{id}/contact', [SitterContactController::class, 'contact']);
 

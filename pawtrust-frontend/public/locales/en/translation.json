@@ -163,6 +163,18 @@
       "save": "Save Profile"
     }
   },
+  "sitters_page": {
+    "title": "Pet Sitters",
+    "filter_service_area": "Service Area",
+    "filter_service_area_placeholder": "e.g. Chișinău",
+    "filter_service_type": "Service Type",
+    "clear_filters": "Clear Filters",
+    "empty_state": "No sitters found in {{area}}. Try expanding your area.",
+    "empty_state_no_filter": "No sitters available right now.",
+    "experience_years": "{{count}} year experience",
+    "experience_years_plural": "{{count}} years experience",
+    "review_placeholder": "No reviews yet"
+  },
   "badge": {
     "verified_label": "Verified",
     "unverified_label": "Unverified",

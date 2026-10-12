@@ -1,4 +1,5 @@
 import axiosClient from './axiosClient'
+import type { PaginationMeta } from './admin.api'
 
 export type SitterService = 'boarding' | 'dog_walking' | 'day_care' | 'drop_in'
 
@@ -44,6 +45,29 @@ export interface SitterContactSubmission {
   created_at: string
 }
 
+export interface SitterCard {
+  id: number
+  full_name: string
+  bio_excerpt: string | null
+  service_areas: string[]
+  services: SitterService[]
+  rates: string | null
+  experience_years: number | null
+  photo_url: string | null
+  average_review: number | null
+}
+
+export interface SitterFilters {
+  service_area?: string
+  service?: SitterService
+  page?: number
+}
+
+export interface PaginatedSitters {
+  data: SitterCard[]
+  meta: PaginationMeta
+}
+
 export const getSitterProfile = (id: number) =>
   axiosClient.get<{ data: SitterProfile }>(`/sitters/${id}`)
 
@@ -70,7 +94,10 @@ export const contactSitter = (sitterId: number, payload: ContactSitterPayload) =
   axiosClient.post<{ message: string }>(`/sitters/${sitterId}/contact`, payload)
 
 export const getContactSubmissions = (page = 1) =>
-  axiosClient.get<{
-    data: SitterContactSubmission[]
-    meta: { current_page: number; last_page: number; total: number }
-  }>('/sitter/contact-submissions', { params: { page } })
+  axiosClient.get<{ data: SitterContactSubmission[]; meta: PaginationMeta }>(
+    '/sitter/contact-submissions',
+    { params: { page } }
+  )
+
+export const getSitters = (filters?: SitterFilters) =>
+  axiosClient.get<PaginatedSitters>('/sitters', { params: filters })

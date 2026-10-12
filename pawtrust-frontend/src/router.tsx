@@ -18,6 +18,7 @@ import AdminListings from '@/pages/stubs/AdminListings'
 import ProfilePage from '@/pages/stubs/ProfilePage'
 import BreederProfilePage from '@/pages/BreederProfile'
 import SitterProfilePage from '@/pages/SitterProfile'
+import SittersPage from '@/pages/SittersPage'
 import CreateListingPage from '@/pages/breeder/CreateListingPage'
 import SearchPage from '@/pages/Search'
 import ListingDetailPage from '@/pages/ListingDetail'
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
   // Public routes
   { path: '/', element: <div>PawTrust Home</div> },
   { path: '/search', element: <SearchPage /> },
-  { path: '/sitters', element: <div>Pet Sitters — coming soon</div> },
+  { path: '/sitters', element: <SittersPage /> },
   { path: '/sitters/:id', element: <SitterProfilePage /> },
   { path: '/breeders/:id', element: <BreederProfilePage /> },
   { path: '/listings/:id', element: <ListingDetailPage /> },

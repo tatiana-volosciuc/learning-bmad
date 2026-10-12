@@ -211,6 +211,18 @@
       "save": "Сохранить профиль"
     }
   },
+  "sitters_page": {
+    "title": "Ухаживающие за животными",
+    "filter_service_area": "Зона обслуживания",
+    "filter_service_area_placeholder": "напр. Кишинёв",
+    "filter_service_type": "Тип услуги",
+    "clear_filters": "Сбросить фильтры",
+    "empty_state": "Ухаживающие в {{area}} не найдены. Попробуйте расширить зону.",
+    "empty_state_no_filter": "Сейчас нет доступных ухаживающих.",
+    "experience_years": "{{count}} год опыта",
+    "experience_years_plural": "{{count}} лет опыта",
+    "review_placeholder": "Пока нет отзывов"
+  },
   "documents": {
     "types": {
       "kennel_cert": "Свидетельство питомника",

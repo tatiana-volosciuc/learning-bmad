@@ -211,6 +211,18 @@
       "save": "Salvează Profilul"
     }
   },
+  "sitters_page": {
+    "title": "Îngrijitori de animale",
+    "filter_service_area": "Zona de servicii",
+    "filter_service_area_placeholder": "ex. Chișinău",
+    "filter_service_type": "Tip de serviciu",
+    "clear_filters": "Șterge filtrele",
+    "empty_state": "Niciun îngrijitor găsit în {{area}}. Încearcă să extinzi zona.",
+    "empty_state_no_filter": "Niciun îngrijitor disponibil momentan.",
+    "experience_years": "{{count}} an experiență",
+    "experience_years_plural": "{{count}} ani experiență",
+    "review_placeholder": "Fără recenzii încă"
+  },
   "badge": {
     "verified_label": "Verificat",
     "unverified_label": "Neverificat",
