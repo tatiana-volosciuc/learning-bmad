@@ -168,6 +168,47 @@
     "sidebar": {
       "my_profile": "Мой профиль",
       "publish_listing": "Опубликовать объявление"
+    },
+    "service_boarding": "Передержка",
+    "service_dog_walking": "Выгул собак",
+    "service_day_care": "Дневной уход",
+    "service_drop_in": "Короткие визиты",
+    "contact_btn": "Связаться",
+    "contact_btn_named": "Связаться с {{name}}",
+    "contact_modal_title": "Отправить сообщение {{name}}",
+    "contact_name_label": "Ваше имя",
+    "contact_email_label": "Ваш email",
+    "contact_message_label": "Сообщение (мин. 10, макс. 1000 символов)",
+    "contact_submitting": "Отправка…",
+    "contact_success": "Ваше сообщение отправлено!",
+    "contact_rate_limited": "Слишком много сообщений. Попробуйте позже.",
+    "dashboard_profile_tab": "Мой профиль",
+    "dashboard_messages_tab": "Полученные сообщения",
+    "incomplete_banner": "Ваш профиль не заполнен. Заполните его, чтобы появиться в поиске.",
+    "no_messages": "Сообщений пока нет.",
+    "profile_saved": "Профиль сохранён!",
+    "profile": {
+      "not_found": "Профиль не найден",
+      "years_experience": "{{n}} лет опыта",
+      "services": "Предлагаемые услуги",
+      "rates": "Тарифы",
+      "languages": "Разговорные языки",
+      "portfolio": "Портфолио",
+      "about": "О себе"
+    },
+    "form": {
+      "full_name": "Полное имя",
+      "bio": "О себе",
+      "service_areas": "Зоны обслуживания (до 3)",
+      "add_area": "+ Добавить зону",
+      "services": "Предлагаемые услуги",
+      "rates": "Тарифы",
+      "experience_years": "Лет опыта",
+      "languages": "Разговорные языки",
+      "add_language": "+ Добавить",
+      "portfolio": "Портфолио (макс. 6 фото)",
+      "saving": "Сохранение…",
+      "save": "Сохранить профиль"
     }
   },
   "documents": {

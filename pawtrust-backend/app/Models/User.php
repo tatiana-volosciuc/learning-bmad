@@ -45,6 +45,11 @@ class User extends Authenticatable
         return $this->hasOne(BreederProfile::class);
     }
 
+    public function sitterProfile(): HasOne
+    {
+        return $this->hasOne(SitterProfile::class);
+    }
+
     public function inquiries(): HasMany
     {
         return $this->hasMany(Inquiry::class, 'buyer_id');

@@ -120,6 +120,47 @@
     "sidebar": {
       "my_profile": "My Profile",
       "publish_listing": "Publish Listing"
+    },
+    "service_boarding": "Boarding",
+    "service_dog_walking": "Dog Walking",
+    "service_day_care": "Day Care",
+    "service_drop_in": "Drop-in Visits",
+    "contact_btn": "Contact",
+    "contact_btn_named": "Contact {{name}}",
+    "contact_modal_title": "Send a message to {{name}}",
+    "contact_name_label": "Your name",
+    "contact_email_label": "Your email",
+    "contact_message_label": "Message (min 10, max 1000 characters)",
+    "contact_submitting": "Sending…",
+    "contact_success": "Your message has been sent!",
+    "contact_rate_limited": "Too many messages. Please try again later.",
+    "dashboard_profile_tab": "My Profile",
+    "dashboard_messages_tab": "Messages",
+    "incomplete_banner": "Your profile is incomplete. Complete it to appear in search results.",
+    "no_messages": "No messages yet.",
+    "profile_saved": "Profile saved!",
+    "profile": {
+      "not_found": "Profile not found",
+      "years_experience": "{{n}} years experience",
+      "services": "Services Offered",
+      "rates": "Rates",
+      "languages": "Languages Spoken",
+      "portfolio": "Care Portfolio",
+      "about": "About"
+    },
+    "form": {
+      "full_name": "Full Name",
+      "bio": "Bio",
+      "service_areas": "Service Areas (up to 3)",
+      "add_area": "+ Add area",
+      "services": "Services Offered",
+      "rates": "Rates",
+      "experience_years": "Years of Experience",
+      "languages": "Languages Spoken",
+      "add_language": "+ Add",
+      "portfolio": "Care Portfolio (max 6 photos)",
+      "saving": "Saving…",
+      "save": "Save Profile"
     }
   },
   "badge": {
