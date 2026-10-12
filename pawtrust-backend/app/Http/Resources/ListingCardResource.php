@@ -24,6 +24,12 @@ class ListingCardResource extends JsonResource
             'listing_type' => $this->listing_type,
             'featured'     => $this->featured_until && $this->featured_until->isFuture(),
             'created_at'   => $this->created_at,
+            // Known MVP performance hotspot: one extra query per card for authenticated buyers.
+            // Acceptable at current scale; optimize with a bulk-loaded saved-id set if it becomes a bottleneck.
+            'is_saved'     => $this->when(
+                $request->user()?->hasRole('buyer'),
+                fn () => $request->user()->savedListings()->where('listing_id', $this->id)->exists()
+            ),
             // SECURITY: No contact details, no health_certificate_key, no s3_key
         ];
     }

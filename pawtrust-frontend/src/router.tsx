@@ -39,6 +39,11 @@ function RedirectIfAuth({ element }: { element: React.ReactNode }) {
   return <>{element}</>
 }
 
+function DashboardRedirect() {
+  const user = useAuthStore((s) => s.user)
+  return <Navigate to={DASHBOARD_ROUTES[user?.role ?? ''] ?? '/'} replace />
+}
+
 const router = createBrowserRouter([
   // Public routes
   { path: '/', element: <div>PawTrust Home</div> },
@@ -55,6 +60,8 @@ const router = createBrowserRouter([
     element: <ProtectedRoute />,
     children: [
       { path: '/buyer/dashboard', element: <BuyerDashboard /> },
+      { path: '/dashboard/buyer', element: <BuyerDashboard /> },
+      { path: '/dashboard', element: <DashboardRedirect /> },
       { path: '/breeder/dashboard', element: <BreederDashboard /> },
       { path: '/dashboard/breeder/inquiries', element: <BreederDashboard /> },
       { path: '/sitter/dashboard', element: <SitterDashboard /> },

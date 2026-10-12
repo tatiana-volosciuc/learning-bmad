@@ -31,4 +31,22 @@ class BreederInquiryController extends Controller
 
         return response()->json(['data' => ['unread_count' => $count]]);
     }
+
+    public function show(Request $request, Inquiry $inquiry)
+    {
+        $profileId = $request->user()->breederProfile()->value('id');
+
+        abort_if($inquiry->listing->breeder_profile_id !== $profileId, 403, 'Forbidden.');
+
+        if ($inquiry->read_at === null) {
+            $inquiry->update(['read_at' => now()]);
+        }
+
+        $inquiry->load(['buyer', 'listing']);
+
+        $data = (new BreederInquiryResource($inquiry))->toArray($request);
+        $data['message'] = $inquiry->message;
+
+        return response()->json(['data' => $data]);
+    }
 }

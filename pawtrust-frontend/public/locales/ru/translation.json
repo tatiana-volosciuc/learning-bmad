@@ -116,7 +116,21 @@
     "btn_view_documents": "Посмотреть документы",
     "no_documents": "Для этого объявления нет доступных документов.",
     "documents_loading": "Загрузка документов...",
-    "view_contact_details": "Посмотреть контактные данные"
+    "view_contact_details": "Посмотреть контактные данные",
+    "tab_inquiries": "Мои заявки",
+    "tab_reviews": "Мои отзывы",
+    "tab_saved": "Сохранённые объявления",
+    "empty_inquiries": "Вы пока не отправили ни одной заявки.",
+    "empty_reviews": "Вы пока не написали ни одного отзыва.",
+    "empty_saved": "Вы пока не сохранили ни одного объявления.",
+    "cta_browse": "Искать объявления",
+    "col_listing": "Объявление",
+    "col_breeder": "Заводчик",
+    "col_date": "Дата",
+    "col_status": "Статус",
+    "btn_contact_details": "Контактные данные",
+    "btn_save_listing": "Сохранить",
+    "btn_unsave_listing": "Убрать из сохранённых"
   },
   "review": {
     "btn_leave_review": "Оставить отзыв",

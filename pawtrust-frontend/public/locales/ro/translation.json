@@ -116,7 +116,21 @@
     "btn_view_documents": "Vezi documentele",
     "no_documents": "Nu există documente disponibile pentru acest anunț.",
     "documents_loading": "Se încarcă documentele...",
-    "view_contact_details": "Vezi datele de contact"
+    "view_contact_details": "Vezi datele de contact",
+    "tab_inquiries": "Solicitările mele",
+    "tab_reviews": "Recenziile mele",
+    "tab_saved": "Anunțuri salvate",
+    "empty_inquiries": "Nu ai solicitat niciun anunț încă.",
+    "empty_reviews": "Nu ai scris nicio recenzie încă.",
+    "empty_saved": "Nu ai salvat niciun anunț încă.",
+    "cta_browse": "Caută anunțuri",
+    "col_listing": "Anunț",
+    "col_breeder": "Crescător",
+    "col_date": "Data",
+    "col_status": "Status",
+    "btn_contact_details": "Date de contact",
+    "btn_save_listing": "Salvează",
+    "btn_unsave_listing": "Eliminați din salvate"
   },
   "review": {
     "btn_leave_review": "Lasă o recenzie",
