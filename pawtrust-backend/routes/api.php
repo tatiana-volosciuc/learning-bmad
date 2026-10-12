@@ -6,6 +6,11 @@ use App\Http\Controllers\Api\V1\BreedController;
 use App\Http\Controllers\Api\V1\Breeder\BreederInquiryController;
 use App\Http\Controllers\Api\V1\BreederDocumentController;
 use App\Http\Controllers\Api\V1\BreederProfileController;
+use App\Http\Controllers\Api\V1\BreederReviewController;
+use App\Http\Controllers\Api\V1\Buyer\BuyerInquiryController;
+use App\Http\Controllers\Api\V1\Buyer\BuyerReviewController;
+use App\Http\Controllers\Api\V1\Buyer\InquiryDocumentController;
+use App\Http\Controllers\Api\V1\Buyer\SavedListingController;
 use App\Http\Controllers\Api\V1\HealthCertificateController;
 use App\Http\Controllers\Api\V1\InquiryController;
 use App\Http\Controllers\Api\V1\ListingController;
@@ -46,6 +51,26 @@ Route::prefix('v1')->group(function () {
     Route::post('/listings/{listing}/inquire', [InquiryController::class, 'store'])
         ->middleware(['auth:sanctum', 'role:buyer']);
 
+    // Post-inquiry document access — ownership enforced in controller, not role-gated
+    Route::get('/inquiries/{inquiry}/documents', [InquiryDocumentController::class, 'index'])
+        ->middleware('auth:sanctum');
+
+    // Breeder review submission (public breeder, buyer-only writer)
+    Route::post('/breeders/{id}/reviews', [BreederReviewController::class, 'store'])
+        ->middleware(['auth:sanctum', 'role:buyer']);
+
+    // Buyer-facing buyer dashboard: inquiries, reviews, saved listings
+    Route::prefix('buyer')->middleware(['auth:sanctum', 'role:buyer'])->group(function () {
+        Route::get('/inquiry-exists', [BuyerInquiryController::class, 'inquiryExists']);
+        Route::get('/review-exists',  [BuyerInquiryController::class, 'reviewExists']);
+        Route::get('/inquiries',              [BuyerInquiryController::class, 'index']);
+        Route::get('/inquiries/{inquiry}',    [BuyerInquiryController::class, 'show']);
+        Route::get('/reviews',                [BuyerReviewController::class, 'index']);
+        Route::get('/saved-listings',                   [SavedListingController::class, 'index']);
+        Route::post('/saved-listings/{listing}/save',   [SavedListingController::class, 'store']);
+        Route::delete('/saved-listings/{listing}/save', [SavedListingController::class, 'destroy']);
+    });
+
     // Authenticated breeder routes
     Route::middleware(['auth:sanctum', 'role:breeder'])->group(function () {
         Route::post('/breeder/profile',       [BreederProfileController::class, 'store']);
@@ -66,6 +91,7 @@ Route::prefix('v1')->group(function () {
         Route::prefix('breeder')->group(function () {
             Route::get('/inquiries',              [BreederInquiryController::class, 'index']);
             Route::get('/inquiries/unread-count', [BreederInquiryController::class, 'unreadCount']);
+            Route::get('/inquiries/{inquiry}',    [BreederInquiryController::class, 'show']);
         });
 
         // Breeder documents

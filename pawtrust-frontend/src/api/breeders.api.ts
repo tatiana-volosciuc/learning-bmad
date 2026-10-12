@@ -5,6 +5,19 @@ export interface ListingSummary {
   title: string | null
 }
 
+export interface BreederReview {
+  id: number
+  rating: number
+  text: string
+  buyer_name: string
+  posted_at: string
+}
+
+export interface ReviewSummary {
+  average_rating: number | null
+  total_count: number
+}
+
 export interface BreederProfile {
   id: number
   kennel_name: string | null
@@ -19,6 +32,8 @@ export interface BreederProfile {
   verified_at: string | null
   listings: ListingSummary[]
   documents_on_file?: number
+  reviews?: BreederReview[]
+  review_summary?: ReviewSummary
 }
 
 export interface BreederProfilePrivate extends BreederProfile {

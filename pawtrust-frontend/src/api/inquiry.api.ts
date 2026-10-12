@@ -11,6 +11,8 @@ export interface InquiryResponse {
   inquiry_id: number
   status: string
   breeder_contact: BreederContact
+  breeder_profile_id: number
+  breeder_user_id: number
 }
 
 export interface BreederInquiry {
@@ -29,7 +31,20 @@ export const submitInquiry = (listingId: number, message?: string) =>
   })
 
 export const getBreederInquiries = (page = 1) =>
-  axiosClient.get<{ data: BreederInquiry[]; meta: PaginationMeta }>('/breeder/inquiries', { params: { page } })
+  axiosClient.get<{ data: BreederInquiry[]; meta: PaginationMeta }>('/breeder/inquiries', {
+    params: { page },
+  })
 
 export const getBreederUnreadCount = () =>
   axiosClient.get<{ data: { unread_count: number } }>('/breeder/inquiries/unread-count')
+
+export interface InquiryDocument {
+  id: number
+  document_type: string
+  filename: string
+  url: string
+  expires_at: string
+}
+
+export const getInquiryDocuments = (inquiryId: number) =>
+  axiosClient.get<{ data: InquiryDocument[] }>(`/inquiries/${inquiryId}/documents`)

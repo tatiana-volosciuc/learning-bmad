@@ -71,7 +71,8 @@
       "years_active": "{{n}} лет опыта",
       "unnamed": "Питомник без названия",
       "documents_on_file": "{{count}} проверочный документ(ов) загружено",
-      "no_documents": "Документы для проверки отсутствуют"
+      "no_documents": "Документы для проверки отсутствуют",
+      "reviews": "Отзывы"
     }
   },
   "admin": {
@@ -110,6 +111,41 @@
       "btn_save": "Сохранить решение",
       "toast_success": "Решение сохранено."
     }
+  },
+  "buyer_dashboard": {
+    "btn_view_documents": "Посмотреть документы",
+    "no_documents": "Для этого объявления нет доступных документов.",
+    "documents_loading": "Загрузка документов...",
+    "view_contact_details": "Посмотреть контактные данные",
+    "tab_inquiries": "Мои заявки",
+    "tab_reviews": "Мои отзывы",
+    "tab_saved": "Сохранённые объявления",
+    "empty_inquiries": "Вы пока не отправили ни одной заявки.",
+    "empty_reviews": "Вы пока не написали ни одного отзыва.",
+    "empty_saved": "Вы пока не сохранили ни одного объявления.",
+    "cta_browse": "Искать объявления",
+    "col_listing": "Объявление",
+    "col_breeder": "Заводчик",
+    "col_date": "Дата",
+    "col_status": "Статус",
+    "btn_contact_details": "Контактные данные",
+    "btn_save_listing": "Сохранить",
+    "btn_unsave_listing": "Убрать из сохранённых"
+  },
+  "review": {
+    "btn_leave_review": "Оставить отзыв",
+    "btn_review_submitted": "Отзыв отправлен",
+    "modal_title": "Оценить заводчика",
+    "rating_label": "Оценка (1–5 звёзд)",
+    "text_label": "Ваш отзыв (мин. 10, макс. 500 символов)",
+    "btn_submit": "Отправить отзыв",
+    "submitting": "Отправка…",
+    "toast_success": "Отзыв отправлен!",
+    "already_reviewed": "Вы уже оставили отзыв об этом заводчике.",
+    "no_inquiry_error": "У вас должен быть запрос к этому заводчику, прежде чем оставить отзыв.",
+    "no_reviews": "Пока нет отзывов об этом заводчике.",
+    "aggregate_label": "{{average}} из 5 ({{count}} отзыв)",
+    "aggregate_label_plural": "{{average}} из 5 ({{count}} отзывов)"
   },
   "breeder_dashboard": {
     "inquiries_nav": "Запросы",

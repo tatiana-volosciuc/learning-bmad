@@ -90,6 +90,7 @@ export interface ListingCard {
   listing_type: 'standard' | 'featured'
   featured: boolean
   created_at: string
+  is_saved?: boolean
 }
 
 export interface PaginatedListings {

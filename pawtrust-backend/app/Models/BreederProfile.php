@@ -42,6 +42,11 @@ class BreederProfile extends Model
         return $this->hasMany(BreederAchievement::class);
     }
 
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(BreederReview::class);
+    }
+
     public function verificationRequests(): HasMany
     {
         return $this->hasMany(VerificationRequest::class);

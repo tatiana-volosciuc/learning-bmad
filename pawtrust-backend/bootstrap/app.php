@@ -1,5 +1,6 @@
 <?php
 
+use App\Exceptions\DuplicateBreederReviewException;
 use App\Exceptions\DuplicateInquiryException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Application;
@@ -27,6 +28,10 @@ return Application::configure(basePath: dirname(__DIR__))
         });
 
         $exceptions->renderable(function (DuplicateInquiryException $e) {
+            return response()->json(['message' => $e->getMessage()], 409);
+        });
+
+        $exceptions->renderable(function (DuplicateBreederReviewException $e) {
             return response()->json(['message' => $e->getMessage()], 409);
         });
     })->create();

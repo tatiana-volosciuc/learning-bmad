@@ -44,8 +44,8 @@ export function InquiryCTA({ listingId, listingTitle = '' }: Props) {
         <InquireModal
           listingId={listingId}
           listingTitle={listingTitle}
-          onSuccess={(contact) => {
-            setRevealedContact(contact)
+          onSuccess={(data) => {
+            setRevealedContact(data.breeder_contact)
             setModalOpen(false)
           }}
         />

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,5 +48,11 @@ class User extends Authenticatable
     public function inquiries(): HasMany
     {
         return $this->hasMany(Inquiry::class, 'buyer_id');
+    }
+
+    public function savedListings(): BelongsToMany
+    {
+        // No withTimestamps() — saved_listings only has created_at (DB default), no updated_at column
+        return $this->belongsToMany(Listing::class, 'saved_listings', 'buyer_id', 'listing_id');
     }
 }
