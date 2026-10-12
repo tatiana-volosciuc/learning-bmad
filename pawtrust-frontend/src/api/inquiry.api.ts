@@ -11,6 +11,8 @@ export interface InquiryResponse {
   inquiry_id: number
   status: string
   breeder_contact: BreederContact
+  breeder_profile_id: number
+  breeder_user_id: number
 }
 
 export interface BreederInquiry {

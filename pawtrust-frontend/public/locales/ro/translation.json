@@ -71,7 +71,8 @@
       "years_active": "{{n}} ani de activitate",
       "unnamed": "Crescătorie fără nume",
       "documents_on_file": "{{count}} document(e) de verificare disponibil(e)",
-      "no_documents": "Niciun document de verificare"
+      "no_documents": "Niciun document de verificare",
+      "reviews": "Recenzii"
     }
   },
   "admin": {
@@ -116,6 +117,21 @@
     "no_documents": "Nu există documente disponibile pentru acest anunț.",
     "documents_loading": "Se încarcă documentele...",
     "view_contact_details": "Vezi datele de contact"
+  },
+  "review": {
+    "btn_leave_review": "Lasă o recenzie",
+    "btn_review_submitted": "Recenzie trimisă",
+    "modal_title": "Recenzează crescătorul",
+    "rating_label": "Evaluare (1–5 stele)",
+    "text_label": "Recenzia ta (min 10, max 500 caractere)",
+    "btn_submit": "Trimite recenzia",
+    "submitting": "Se trimite…",
+    "toast_success": "Recenzie trimisă!",
+    "already_reviewed": "Ai trimis deja o recenzie pentru acest crescător.",
+    "no_inquiry_error": "Trebuie să ai o solicitare trimisă înainte de a lăsa o recenzie.",
+    "no_reviews": "Nicio recenzie pentru acest crescător încă.",
+    "aggregate_label": "{{average}} din 5 ({{count}} recenzie)",
+    "aggregate_label_plural": "{{average}} din 5 ({{count}} recenzii)"
   },
   "breeder_dashboard": {
     "inquiries_nav": "Solicit\u0103ri",

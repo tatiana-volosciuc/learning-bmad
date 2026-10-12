@@ -5,6 +5,7 @@ import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { useAuthStore } from '@/store/authStore'
 import { getStoredInquiries } from '@/store/buyerInquiries'
 import { InquiryDocumentsButton } from '@/components/buyer/InquiryDocumentsButton'
+import { ReviewCta } from '@/components/buyer/ReviewCta'
 
 export default function BuyerDashboard() {
   const { t } = useTranslation()
@@ -52,7 +53,7 @@ export default function BuyerDashboard() {
                   </span>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
                   <button
                     type="button"
                     onClick={() =>
@@ -63,6 +64,12 @@ export default function BuyerDashboard() {
                     {t('buyer_dashboard.view_contact_details', 'View Contact Details')}
                   </button>
                   <InquiryDocumentsButton inquiryId={inquiry.inquiryId} />
+                  {inquiry.status === 'contact_revealed' && (
+                    <ReviewCta
+                      breederProfileId={inquiry.breederProfileId}
+                      breederName={inquiry.contact.name}
+                    />
+                  )}
                 </div>
 
                 {expandedId === inquiry.inquiryId && (

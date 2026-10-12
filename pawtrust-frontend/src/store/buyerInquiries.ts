@@ -7,6 +7,8 @@ export interface StoredInquiry {
   status: string
   submittedAt: string
   contact: BreederContact
+  breederProfileId: number
+  breederUserId: number
 }
 
 const storageKey = (userId: number) => `pawtrust:buyerInquiries:${userId}`

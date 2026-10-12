@@ -65,6 +65,7 @@ class BreederProfileController extends Controller
         $profile = BreederProfile::where('user_id', $id)->firstOrFail();
 
         $profile->load(['documents' => fn ($q) => $q->whereNull('deleted_at')->where('status', 'approved')]);
+        $profile->load(['reviews' => fn ($q) => $q->with('buyer')->latest()->limit(20)]);
 
         return response()->json(['data' => new BreederProfilePublicResource($profile)]);
     }

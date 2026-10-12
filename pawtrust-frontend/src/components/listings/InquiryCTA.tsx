@@ -54,6 +54,8 @@ export function InquiryCTA({ listingId, listingTitle = '' }: Props) {
                 status: data.status,
                 submittedAt: new Date().toISOString(),
                 contact: data.breeder_contact,
+                breederProfileId: data.breeder_profile_id,
+                breederUserId: data.breeder_user_id,
               })
             }
             setRevealedContact(data.breeder_contact)

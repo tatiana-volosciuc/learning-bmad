@@ -36,6 +36,13 @@ class BreederProfilePublicResource extends JsonResource
                 fn () => $this->documents->count(),
                 0
             ),
+            'reviews'              => BreederReviewResource::collection($this->whenLoaded('reviews')),
+            'review_summary'       => $this->whenLoaded('reviews', fn () => [
+                'average_rating' => $this->reviews->isNotEmpty()
+                    ? round($this->reviews->avg('rating'), 1)
+                    : null,
+                'total_count'    => $this->reviews->count(),
+            ]),
             // NEVER include: phone, email, user_id (internal), verified_by
         ];
     }

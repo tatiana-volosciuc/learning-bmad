@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\V1\BreedController;
 use App\Http\Controllers\Api\V1\Breeder\BreederInquiryController;
 use App\Http\Controllers\Api\V1\BreederDocumentController;
 use App\Http\Controllers\Api\V1\BreederProfileController;
+use App\Http\Controllers\Api\V1\BreederReviewController;
+use App\Http\Controllers\Api\V1\Buyer\BuyerInquiryController;
 use App\Http\Controllers\Api\V1\Buyer\InquiryDocumentController;
 use App\Http\Controllers\Api\V1\HealthCertificateController;
 use App\Http\Controllers\Api\V1\InquiryController;
@@ -50,6 +52,16 @@ Route::prefix('v1')->group(function () {
     // Post-inquiry document access — ownership enforced in controller, not role-gated
     Route::get('/inquiries/{inquiry}/documents', [InquiryDocumentController::class, 'index'])
         ->middleware('auth:sanctum');
+
+    // Breeder review submission (public breeder, buyer-only writer)
+    Route::post('/breeders/{id}/reviews', [BreederReviewController::class, 'store'])
+        ->middleware(['auth:sanctum', 'role:buyer']);
+
+    // Buyer-facing checks used to gate the "Leave a Review" CTA
+    Route::middleware(['auth:sanctum', 'role:buyer'])->group(function () {
+        Route::get('/buyer/inquiry-exists', [BuyerInquiryController::class, 'inquiryExists']);
+        Route::get('/buyer/review-exists',  [BuyerInquiryController::class, 'reviewExists']);
+    });
 
     // Authenticated breeder routes
     Route::middleware(['auth:sanctum', 'role:breeder'])->group(function () {

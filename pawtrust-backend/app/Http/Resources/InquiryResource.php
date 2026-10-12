@@ -23,6 +23,9 @@ class InquiryResource extends JsonResource
                 'email' => $this->listing->breederProfile->user->email,
                 'phone' => $this->listing->breederProfile->phone,
             ],
+            // Already revealed to this buyer via breeder_contact above — no new exposure.
+            'breeder_profile_id' => $this->listing->breederProfile->id,
+            'breeder_user_id'    => $this->listing->breederProfile->user_id,
         ];
     }
 }
