@@ -111,6 +111,19 @@
       "toast_success": "Decizia a fost salvată."
     }
   },
+  "breeder_dashboard": {
+    "inquiries_nav": "Solicit\u0103ri",
+    "inquiries_title": "Solicit\u0103rile mele",
+    "col_listing": "Anun\u021b",
+    "col_buyer": "Cump\u0103r\u0103tor",
+    "col_date": "Data",
+    "col_message": "Mesaj",
+    "col_status": "Status",
+    "status_contact_revealed": "Contact dezv\u0103luit",
+    "no_inquiries": "Nu ai solicit\u0103ri \u00eenc\u0103. Solicit\u0103rile vor ap\u0103rea aici.",
+    "unread_badge": "{{count}} necitite",
+    "no_message": "F\u0103r\u0103 mesaj"
+  },
   "sitter": {
     "dashboard": {
       "title": "Tabloul îngrijitorului",

@@ -111,6 +111,19 @@
       "toast_success": "Решение сохранено."
     }
   },
+  "breeder_dashboard": {
+    "inquiries_nav": "Запросы",
+    "inquiries_title": "Мои запросы",
+    "col_listing": "Объявление",
+    "col_buyer": "Покупатель",
+    "col_date": "Дата",
+    "col_message": "Сообщение",
+    "col_status": "Статус",
+    "status_contact_revealed": "Контакт раскрыт",
+    "no_inquiries": "Запросов пока нет. Запросы по вашим объявлениям появятся здесь.",
+    "unread_badge": "{{count}} непрочитанных",
+    "no_message": "Без сообщения"
+  },
   "sitter": {
     "dashboard": {
       "title": "Панель ухаживающего",

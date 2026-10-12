@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\V1\Admin\AdminVerificationController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\BreedController;
+use App\Http\Controllers\Api\V1\Breeder\BreederInquiryController;
 use App\Http\Controllers\Api\V1\BreederDocumentController;
 use App\Http\Controllers\Api\V1\BreederProfileController;
 use App\Http\Controllers\Api\V1\HealthCertificateController;
@@ -60,6 +61,12 @@ Route::prefix('v1')->group(function () {
         Route::post('/listings/{listing}/photos',                   [ListingPhotoController::class, 'store']);
         Route::delete('/listings/{listing}/photos/{photo}',         [ListingPhotoController::class, 'destroy']);
         Route::post('/listings/{listing}/health-certificate',       [HealthCertificateController::class, 'store']);
+
+        // Breeder inquiry management
+        Route::prefix('breeder')->group(function () {
+            Route::get('/inquiries',              [BreederInquiryController::class, 'index']);
+            Route::get('/inquiries/unread-count', [BreederInquiryController::class, 'unreadCount']);
+        });
 
         // Breeder documents
         Route::post('/breeders/{breederId}/documents',              [BreederDocumentController::class, 'store']);
