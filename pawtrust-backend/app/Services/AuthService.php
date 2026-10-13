@@ -31,12 +31,16 @@ class AuthService
 
     public function login(array $credentials): array
     {
-        if (!Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
+        // Explicit 'web' guard: the default guard can be left pointing at
+        // 'sanctum' by an earlier authenticated request in the same cycle
+        // (Illuminate\Auth\Middleware\Authenticate calls Auth::shouldUse()),
+        // and RequestGuard has no attempt() method.
+        if (!Auth::guard('web')->attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
             throw new AuthenticationException('Invalid credentials.');
         }
 
         /** @var User $user */
-        $user = Auth::user();
+        $user = Auth::guard('web')->user();
 
         // Revoke all previous tokens on re-login (MVP: single-device)
         $user->tokens()->delete();

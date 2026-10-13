@@ -18,4 +18,5 @@ return [
     'too_many_messages'                   => 'Prea multe mesaje trimise. Te rugăm să încerci din nou mai târziu.',
     'duplicate_inquiry'                   => 'Ai trimis deja o solicitare pentru acest anunț.',
     'duplicate_review'                    => 'Ai evaluat deja acest crescător.',
+    'account_deleted'                     => 'Contul tău a fost șters.',
 ];

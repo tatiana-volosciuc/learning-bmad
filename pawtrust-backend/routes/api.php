@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\Admin\AdminVerificationController;
+use App\Http\Controllers\Api\V1\AccountController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\BreedController;
 use App\Http\Controllers\Api\V1\Breeder\BreederInquiryController;
@@ -44,6 +45,13 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/auth/logout', [AuthController::class, 'logout']);
         Route::get('/auth/me',      [AuthController::class, 'me']);
+    });
+
+    // Account self-service (GDPR): any authenticated user, any role
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::delete('/account',        [AccountController::class, 'destroy']);
+        Route::get('/account/export',    [AccountController::class, 'export'])
+            ->middleware('throttle:1,60');
     });
 
     // Public breeder/breed routes

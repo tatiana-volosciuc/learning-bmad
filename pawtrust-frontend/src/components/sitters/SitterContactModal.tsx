@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { contactSitter } from '@/api/sitter.api'
 
@@ -128,6 +129,18 @@ export function SitterContactModal({ sitterId, sitterName, onSuccess }: Props) {
           ? t('sitter.contact_submitting', 'Sending…')
           : t('sitter.contact_btn', 'Contact')}
       </button>
+
+      <p className="text-center text-xs text-gray-400">
+        {t('auth.privacy_notice', 'By registering, you agree to our')}{' '}
+        <Link to="/privacy" className="underline hover:text-gray-600">
+          {t('common.privacy_policy', 'Privacy Policy')}
+        </Link>{' '}
+        {t('common.and', 'and')}{' '}
+        <Link to="/terms" className="underline hover:text-gray-600">
+          {t('common.terms_of_service', 'Terms of Service')}
+        </Link>
+        .
+      </p>
     </div>
   )
 }

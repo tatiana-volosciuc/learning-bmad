@@ -22,6 +22,8 @@ import SittersPage from '@/pages/SittersPage'
 import CreateListingPage from '@/pages/breeder/CreateListingPage'
 import SearchPage from '@/pages/Search'
 import ListingDetailPage from '@/pages/ListingDetail'
+import PrivacyPolicyPage from '@/pages/PrivacyPolicyPage'
+import TermsOfServicePage from '@/pages/TermsOfServicePage'
 import { ProtectedRoute, AdminRoute } from '@/components/common/ProtectedRoute'
 import { useAuthStore } from '@/store/authStore'
 
@@ -54,6 +56,8 @@ const router = createBrowserRouter([
   { path: '/sitters/:id', element: <SitterProfilePage /> },
   { path: '/breeders/:id', element: <BreederProfilePage /> },
   { path: '/listings/:id', element: <ListingDetailPage /> },
+  { path: '/privacy', element: <PrivacyPolicyPage /> },
+  { path: '/terms', element: <TermsOfServicePage /> },
   { path: '/register', element: <RedirectIfAuth element={<RegisterPage />} /> },
   { path: '/login', element: <RedirectIfAuth element={<LoginPage />} /> },
   { path: '/forgot-password', element: <ForgotPasswordPage /> },
