@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import type { Review, ReviewSummary } from '@/api/listings.api'
+import { formatDate } from '@/utils/date'
 
 interface Props {
   reviews: Review[]
@@ -47,9 +48,7 @@ export function ReviewsList({ reviews, summary, breederId }: Props) {
           <div className="flex items-center gap-2 mb-1">
             <Stars rating={r.rating} />
             <span className="text-xs text-gray-500 font-medium">{r.buyer_name}</span>
-            <span className="text-xs text-gray-400 ml-auto">
-              {new Date(r.created_at).toLocaleDateString()}
-            </span>
+            <span className="text-xs text-gray-400 ml-auto">{formatDate(r.created_at)}</span>
           </div>
           {r.comment && <p className="text-sm text-gray-700 line-clamp-3">{r.comment}</p>}
         </div>

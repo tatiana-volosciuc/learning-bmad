@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Services\S3Service;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -30,6 +31,7 @@ class ListingResource extends JsonResource
             'featured_until' => $this->featured_until,
             'featured'       => $this->is_featured,
             'photos'         => ListingPhotoResource::collection($this->whenLoaded('photos')),
+            'og_image_url'   => $this->getOgImageUrl(),
             // SECURITY: health_certificate_key NEVER included — access controlled post-inquiry
             'health_certificate' => $this->health_certificate_key ? 'on_file' : null,
             'breeder'        => BreederSummaryResource::make($this->whenLoaded('breederProfile')),
@@ -40,6 +42,21 @@ class ListingResource extends JsonResource
             'recent_reviews' => ReviewResource::collection($this->whenLoaded('reviews')),
             'created_at'     => $this->created_at,
         ];
+    }
+
+    private function getOgImageUrl(): ?string
+    {
+        $photo = $this->whenLoaded('photos', fn () => $this->photos->first());
+
+        if (!$photo instanceof \App\Models\ListingPhoto) {
+            return null;
+        }
+
+        try {
+            return app(S3Service::class)->presignedUrl($photo->s3_key, 86400);
+        } catch (\Throwable) {
+            return null;
+        }
     }
 }
 

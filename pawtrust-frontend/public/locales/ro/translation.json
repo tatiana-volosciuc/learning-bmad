@@ -7,12 +7,14 @@
     "password": "Parolă",
     "password_required": "Parola este obligatorie",
     "forgot_password": "Ai uitat parola?",
+    "forgot_password_coming_soon": "Resetarea parolei va fi disponibilă în curând",
     "login": "Conectare",
     "signing_in": "Se conectează…",
     "invalid_credentials": "Email sau parolă incorectă.",
     "rate_limited": "Prea multe încercări de autentificare. Vă rugăm să așteptați un minut.",
     "no_account": "Nu ai cont?",
-    "register": "Înregistrează-te"
+    "register": "Înregistrează-te",
+    "privacy_notice": "Prin înregistrare, ești de acord cu"
   },
   "nav": {
     "browse_listings": "Anunțuri",
@@ -28,7 +30,13 @@
     "yes": "Da",
     "back": "Înapoi",
     "prev": "Înapoi",
-    "next": "Înainte"
+    "next": "Înainte",
+    "language_changed": "Limba a fost schimbată în {{lng}}",
+    "cancel": "Anulează",
+    "privacy_policy": "Politica de confidențialitate",
+    "terms_of_service": "Termenii și condițiile",
+    "and": "și",
+    "contact_us": "Contactează-ne"
   },
   "buyer": {
     "dashboard": {
@@ -103,6 +111,7 @@
       "col_status": "Status",
       "btn_review": "Revizuiește",
       "btn_preview": "Previzualizează",
+      "preview_error": "Nu s-a putut încărca previzualizarea documentului.",
       "modal_title": "Decizie verificare",
       "status_under_review": "Pus în revizuire",
       "status_approve": "Aprobă",
@@ -273,6 +282,7 @@
     "inquiry_cta_buyer": "Trimite cerere pentru acces la contact și documente",
     "no_reviews": "Nicio recenzie încă.",
     "see_all_reviews": "Vezi toate recenziile pe profilul crescătorului →",
+    "not_found": "Anunțul nu a fost găsit sau nu mai este disponibil.",
     "breadcrumb": {
       "home": "Acasă",
       "browse": "Anunțuri"
@@ -331,5 +341,50 @@
     "contact_email": "Email",
     "contact_phone": "Telefon",
     "contact_name": "Nume"
+  },
+  "gdpr": {
+    "cookie_banner_text": "Folosim doar cookie-uri esențiale pentru a funcționa. Nu te urmărim în alte scopuri.",
+    "cookie_banner_aria": "Consimțământ cookie-uri",
+    "cookie_accept_all": "Acceptă toate",
+    "cookie_reject": "Respinge non-esențiale",
+    "delete_account_btn": "Șterge contul",
+    "delete_account_confirm": "Această acțiune este ireversibilă. Toate datele tale vor fi anonimizate, iar anunțurile, solicitările și fișierele tale vor fi eliminate.",
+    "export_data_btn": "Exportează datele mele",
+    "export_success": "Datele tale au fost exportate.",
+    "account_deleted_toast": "Contul tău a fost șters."
+  },
+  "privacy": {
+    "title": "Politica de confidențialitate",
+    "data_collected_title": "Datele pe care le colectăm",
+    "data_collected_body": "Colectăm datele pe care ni le furnizezi direct (nume, email, telefon, profil de crescătorie sau pet sitter, documente de verificare, mesaje) și date tehnice minime necesare funcționării platformei.",
+    "how_used_title": "Cum folosim datele tale",
+    "how_used_body": "Folosim datele tale pentru a opera contul tău, a facilita conectarea dintre cumpărători, crescători și pet sitteri, a procesa plăți și a-ți trimite comunicări legate de cont.",
+    "processors_title": "Procesatori terți",
+    "processors_body": "Folosim Amazon Web Services (stocare documente și fotografii), Stripe (procesare plăți) și Amazon SES (trimitere email-uri) ca procesatori de date în numele nostru.",
+    "rights_title": "Drepturile tale",
+    "rights_body": "Ai dreptul de acces, rectificare, ștergere și portabilitate a datelor tale. Poți exporta sau șterge contul tău din pagina de profil, sau ne poți contacta pentru orice altă solicitare.",
+    "contact_title": "Contactează-ne",
+    "contact_body": "Pentru întrebări privind datele tale, scrie-ne la contact@pawtrust.md."
+  },
+  "terms": {
+    "title": "Termenii și condițiile",
+    "acceptance_title": "Acceptarea termenilor",
+    "acceptance_body": "Prin utilizarea PawTrust, ești de acord cu acești termeni și cu Politica noastră de confidențialitate.",
+    "accounts_title": "Conturi și eligibilitate",
+    "accounts_body": "Trebuie să ai cel puțin 18 ani și să furnizezi informații corecte pentru a crea un cont pe PawTrust.",
+    "conduct_title": "Utilizare acceptabilă",
+    "conduct_body": "Nu este permisă publicarea de conținut fals, fraudulos sau care încalcă legislația în vigoare privind bunăstarea animalelor.",
+    "liability_title": "Limitarea răspunderii",
+    "liability_body": "PawTrust facilitează conectarea dintre utilizatori, dar nu este parte în tranzacțiile dintre cumpărători și crescători și nu își asumă răspunderea pentru acestea.",
+    "contact_title": "Contactează-ne",
+    "contact_body": "Pentru întrebări privind acești termeni, scrie-ne la contact@pawtrust.md."
+  },
+  "seo": {
+    "home_title": "PawTrust — Adopție responsabilă de animale în Moldova",
+    "home_description": "Găsește crescători verificați și îngrijitori de animale de companie în Moldova și România.",
+    "browse_title": "Caută animale de adoptat",
+    "browse_description": "Răsfoiește sute de anunțuri de la crescători verificați.",
+    "sitters_title": "Găsește îngrijitori de animale",
+    "sitters_description": "îngrijitori de animale de companie în Chișinău, Bălți și toată Moldova."
   }
 }

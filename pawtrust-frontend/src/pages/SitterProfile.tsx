@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { getSitterProfile, type SitterService } from '@/api/sitter.api'
 import { SitterContactModal } from '@/components/sitters/SitterContactModal'
+import { PageMeta } from '@/components/shared/PageMeta'
 
 const SERVICE_ICONS: Record<SitterService, string> = {
   boarding: '🏠',
@@ -64,6 +65,11 @@ export default function SitterProfilePage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 py-8">
+        <PageMeta
+          title={data.full_name}
+          description={data.bio?.slice(0, 150)}
+          ogImage={data.portfolio_photos[0]?.url ?? undefined}
+        />
         {/* Header */}
         <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
           <div className="flex items-center gap-3 flex-wrap">

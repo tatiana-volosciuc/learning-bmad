@@ -21,7 +21,7 @@ class BreederProfileController extends Controller
     public function store(BreederProfileRequest $request): JsonResponse
     {
         if ($request->user()->breederProfile()->exists()) {
-            return response()->json(['message' => 'Profile already exists.'], Response::HTTP_CONFLICT);
+            return response()->json(['message' => __('errors.profile_already_exists')], Response::HTTP_CONFLICT);
         }
 
         $data  = $request->validated();
@@ -37,7 +37,7 @@ class BreederProfileController extends Controller
         $profile = $request->user()->breederProfile;
 
         if (!$profile) {
-            return response()->json(['message' => 'Profile not found.'], 404);
+            return response()->json(['message' => __('errors.profile_not_found')], 404);
         }
 
         $data    = $request->validated();
@@ -52,7 +52,7 @@ class BreederProfileController extends Controller
         $profile = $request->user()->breederProfile;
 
         if (!$profile) {
-            return response()->json(['message' => 'Profile not found.'], 404);
+            return response()->json(['message' => __('errors.profile_not_found')], 404);
         }
 
         $profile->load(['documents' => fn ($q) => $q->whereNull('deleted_at')]);
@@ -79,7 +79,7 @@ class BreederProfileController extends Controller
         $profile = $request->user()->breederProfile;
 
         if (!$profile) {
-            return response()->json(['message' => 'Profile not found.'], 404);
+            return response()->json(['message' => __('errors.profile_not_found')], 404);
         }
 
         $profile = $this->profileService->uploadPhoto($profile, $request->user(), $request->file('profile_photo'));

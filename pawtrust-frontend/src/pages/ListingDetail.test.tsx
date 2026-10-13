@@ -2,6 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { HelmetProvider } from 'react-helmet-async'
 import ListingDetailPage from './ListingDetail'
 import * as listingsApi from '@/api/listings.api'
 import type { ListingDetail } from '@/api/listings.api'
@@ -66,14 +67,16 @@ function renderDetail(id = '42') {
     defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
   })
   return render(
-    <QueryClientProvider client={client}>
-      <MemoryRouter initialEntries={[`/listings/${id}`]}>
-        <Routes>
-          <Route path="/listings/:id" element={<ListingDetailPage />} />
-          <Route path="/breeders/:id" element={<div>Breeder profile</div>} />
-        </Routes>
-      </MemoryRouter>
-    </QueryClientProvider>
+    <HelmetProvider>
+      <QueryClientProvider client={client}>
+        <MemoryRouter initialEntries={[`/listings/${id}`]}>
+          <Routes>
+            <Route path="/listings/:id" element={<ListingDetailPage />} />
+            <Route path="/breeders/:id" element={<div>Breeder profile</div>} />
+          </Routes>
+        </MemoryRouter>
+      </QueryClientProvider>
+    </HelmetProvider>
   )
 }
 

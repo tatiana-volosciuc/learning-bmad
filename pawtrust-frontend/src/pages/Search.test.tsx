@@ -2,6 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { HelmetProvider } from 'react-helmet-async'
 import SearchPage from './Search'
 import * as listingsApi from '@/api/listings.api'
 import type { ListingCard, PaginatedListings } from '@/api/listings.api'
@@ -58,14 +59,16 @@ function renderSearch(initialUrl = '/search') {
     defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
   })
   return render(
-    <QueryClientProvider client={client}>
-      <MemoryRouter initialEntries={[initialUrl]}>
-        <Routes>
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/listings/:id" element={<div>Listing detail</div>} />
-        </Routes>
-      </MemoryRouter>
-    </QueryClientProvider>
+    <HelmetProvider>
+      <QueryClientProvider client={client}>
+        <MemoryRouter initialEntries={[initialUrl]}>
+          <Routes>
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/listings/:id" element={<div>Listing detail</div>} />
+          </Routes>
+        </MemoryRouter>
+      </QueryClientProvider>
+    </HelmetProvider>
   )
 }
 

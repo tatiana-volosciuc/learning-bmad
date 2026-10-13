@@ -8,6 +8,7 @@ import {
   type AdminVerificationRequest,
   type VerificationReviewStatus,
 } from '@/api/admin.api'
+import { formatDate } from '@/utils/date'
 
 interface Props {
   request: AdminVerificationRequest
@@ -37,7 +38,7 @@ export default function ReviewModal({ request, onReviewed, onClose }: Props) {
       const res = await getDocumentPreviewUrl(docId)
       window.open(res.data.data.url, '_blank', 'noopener,noreferrer')
     } catch {
-      toast.error('Could not load document preview.')
+      toast.error(t('admin.verification.preview_error', 'Could not load document preview.'))
     }
   }
 
@@ -64,7 +65,7 @@ export default function ReviewModal({ request, onReviewed, onClose }: Props) {
             <p className="text-xs text-gray-400 mt-0.5">{request.breeder.email}</p>
             <p className="text-xs text-gray-400">
               {t('admin.verification.col_submitted', 'Submitted')}:{' '}
-              {new Date(request.submitted_at).toLocaleDateString()}
+              {formatDate(request.submitted_at)}
             </p>
           </div>
           <button

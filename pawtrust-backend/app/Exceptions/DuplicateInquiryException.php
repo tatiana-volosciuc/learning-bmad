@@ -8,6 +8,6 @@ class DuplicateInquiryException extends RuntimeException
 {
     public function __construct()
     {
-        parent::__construct('You have already inquired about this listing.');
+        parent::__construct(__('errors.duplicate_inquiry'));
     }
 }

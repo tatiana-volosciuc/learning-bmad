@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { SitterProfileForm } from '@/components/sitters/SitterProfileForm'
 import { getMySitterProfile, getContactSubmissions } from '@/api/sitter.api'
+import { formatDate } from '@/utils/date'
 
 function MessagesTab() {
   const { t } = useTranslation()
@@ -23,9 +24,7 @@ function MessagesTab() {
         <div key={submission.id} className="bg-white rounded-lg border border-gray-200 p-4">
           <div className="flex items-center justify-between gap-2 mb-1">
             <span className="font-medium text-gray-900">{submission.sender_name}</span>
-            <span className="text-xs text-gray-400">
-              {new Date(submission.created_at).toLocaleDateString()}
-            </span>
+            <span className="text-xs text-gray-400">{formatDate(submission.created_at)}</span>
           </div>
           <p className="text-sm text-gray-700">{submission.message}</p>
         </div>

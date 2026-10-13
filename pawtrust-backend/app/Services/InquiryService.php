@@ -9,21 +9,36 @@ use App\Models\Listing;
 use App\Models\User;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\RateLimiter;
 
 class InquiryService
 {
-    public function submit(User $buyer, Listing $listing, ?string $message): Inquiry
+    private const MAX_ATTEMPTS = 5;
+    private const DECAY_SECONDS = 3600;
+
+    public function submit(User $buyer, Listing $listing, ?string $message, string $ip): Inquiry
     {
+        $key = "inquiry_submit:{$ip}";
+
+        if (RateLimiter::tooManyAttempts($key, self::MAX_ATTEMPTS)) {
+            throw new HttpResponseException(
+                response()->json(['message' => __('errors.too_many_messages')], 429)
+                    ->header('Retry-After', (string) RateLimiter::availableIn($key))
+            );
+        }
+
+        RateLimiter::hit($key, self::DECAY_SECONDS);
+
         // Defensive second layer: route middleware already enforces role:buyer
         if ($buyer->hasRole('breeder') || $buyer->hasRole('admin')) {
             throw new HttpResponseException(
-                response()->json(['message' => 'Only buyers may submit inquiries.'], 403)
+                response()->json(['message' => __('errors.buyers_only')], 403)
             );
         }
 
         if ($listing->status !== 'active') {
             throw new HttpResponseException(
-                response()->json(['message' => 'This listing is not available for inquiries.'], 422)
+                response()->json(['message' => __('errors.listing_not_available_for_inquiries')], 422)
             );
         }
 

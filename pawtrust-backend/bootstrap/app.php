@@ -19,11 +19,21 @@ return Application::configure(basePath: dirname(__DIR__))
             'role'       => \Spatie\Permission\Middleware\RoleMiddleware::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
         ]);
+
+        $middleware->api(prepend: [
+            \App\Http\Middleware\SetLocale::class,
+        ]);
+
+        // Applies to every response (web + api), including the Stripe webhook.
+        $middleware->append(\App\Http\Middleware\SecurityHeaders::class);
+
+        // Trust all proxies — app sits behind an AWS load balancer in production.
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->renderable(function (AuthenticationException $e, $request) {
             if ($request->expectsJson()) {
-                return response()->json(['message' => 'Invalid credentials.'], 401);
+                return response()->json(['message' => __('errors.invalid_credentials')], 401);
             }
         });
 

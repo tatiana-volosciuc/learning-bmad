@@ -206,10 +206,15 @@ export default function RegisterPage() {
         </p>
 
         <p className="text-center text-xs text-gray-400">
-          {t(
-            'auth.privacy_notice',
-            'By registering, you agree to our Privacy Policy and Terms of Service.'
-          )}
+          {t('auth.privacy_notice', 'By registering, you agree to our')}{' '}
+          <Link to="/privacy" className="underline hover:text-gray-600">
+            {t('common.privacy_policy', 'Privacy Policy')}
+          </Link>{' '}
+          {t('common.and', 'and')}{' '}
+          <Link to="/terms" className="underline hover:text-gray-600">
+            {t('common.terms_of_service', 'Terms of Service')}
+          </Link>
+          .
         </p>
       </div>
     </div>

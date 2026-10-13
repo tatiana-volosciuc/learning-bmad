@@ -19,4 +19,12 @@ class S3Service
 
         return (string) $this->s3Client->createPresignedRequest($cmd, "+{$ttlSeconds} seconds")->getUri();
     }
+
+    public function delete(string $s3Key): void
+    {
+        $this->s3Client->deleteObject([
+            'Bucket' => config('filesystems.disks.s3.bucket'),
+            'Key'    => $s3Key,
+        ]);
+    }
 }

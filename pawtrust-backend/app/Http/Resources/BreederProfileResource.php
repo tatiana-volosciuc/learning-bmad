@@ -21,6 +21,7 @@ class BreederProfileResource extends JsonResource
             'website'              => $this->website,
             'breed_specialization' => $this->breed_specialization,
             'profile_photo_url'    => $this->getPhotoUrl(),
+            'og_image_url'         => $this->getPhotoUrl() ?? $this->getFirstListingPhotoUrl(),
             'years_active'         => $this->years_active,
             'verified'             => $this->isVerified(),
             'verified_at'          => $this->verified_at,
@@ -36,6 +37,22 @@ class BreederProfileResource extends JsonResource
 
         try {
             return app(S3Service::class)->presignedUrl($this->profile_photo_key);
+        } catch (\Throwable) {
+            return null;
+        }
+    }
+
+    private function getFirstListingPhotoUrl(): ?string
+    {
+        $listing = $this->relationLoaded('listings') ? $this->listings->first() : null;
+        $photo   = $listing?->photos?->first();
+
+        if (!$photo) {
+            return null;
+        }
+
+        try {
+            return app(S3Service::class)->presignedUrl($photo->s3_key, 86400);
         } catch (\Throwable) {
             return null;
         }

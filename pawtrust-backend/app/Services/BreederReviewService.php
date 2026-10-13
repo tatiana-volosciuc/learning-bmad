@@ -20,7 +20,7 @@ class BreederReviewService
 
         if (!$hasInquiry) {
             throw new HttpResponseException(
-                response()->json(['message' => 'You must have an inquiry with this breeder before leaving a review.'], 422)
+                response()->json(['message' => __('errors.review_requires_inquiry')], 422)
             );
         }
 

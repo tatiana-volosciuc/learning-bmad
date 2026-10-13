@@ -27,6 +27,7 @@ export interface BreederProfile {
   website: string | null
   breed_specialization: string[] | null
   profile_photo_url: string | null
+  og_image_url?: string | null
   years_active: number | null
   verified: boolean
   verified_at: string | null

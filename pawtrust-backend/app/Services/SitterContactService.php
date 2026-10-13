@@ -20,7 +20,8 @@ class SitterContactService
 
         if (RateLimiter::tooManyAttempts($key, self::MAX_ATTEMPTS)) {
             throw new HttpResponseException(
-                response()->json(['message' => 'Too many messages sent. Please try again later.'], 429)
+                response()->json(['message' => __('errors.too_many_messages')], 429)
+                    ->header('Retry-After', (string) RateLimiter::availableIn($key))
             );
         }
 

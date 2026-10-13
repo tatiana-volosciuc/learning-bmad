@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useListings } from '@/hooks/useListings'
 import { ListingGrid } from '@/components/listings/ListingGrid'
 import { SearchFilters } from '@/components/listings/SearchFilters'
+import { PageMeta } from '@/components/shared/PageMeta'
 import type { ListingSearchParams } from '@/api/listings.api'
 
 function parseParams(searchParams: URLSearchParams): ListingSearchParams {
@@ -63,6 +64,13 @@ export default function SearchPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-8">
+        <PageMeta
+          title={t('seo.browse_title', 'Browse Pet Listings')}
+          description={t(
+            'seo.browse_description',
+            'Browse hundreds of listings from verified breeders.'
+          )}
+        />
         {/* Page header */}
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-gray-900">{t('search.title', 'Browse Pets')}</h1>

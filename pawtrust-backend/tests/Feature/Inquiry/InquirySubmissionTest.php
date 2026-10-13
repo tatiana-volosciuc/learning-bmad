@@ -87,7 +87,7 @@ class InquirySubmissionTest extends TestCase
 
         $this->actingAs($this->buyer, 'sanctum')
             ->postJson("/api/v1/listings/{$this->listing->id}/inquire")
-            ->assertJson(['message' => 'You have already inquired about this listing.']);
+            ->assertJson(['message' => __('errors.duplicate_inquiry')]);
     }
 
     public function test_breeder_cannot_submit_inquiry(): void

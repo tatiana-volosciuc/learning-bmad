@@ -21,6 +21,6 @@ class SitterContactController extends Controller
 
         $this->contactService->submit($profile, $request->validated(), $request->ip());
 
-        return response()->json(['message' => 'Your message has been sent.']);
+        return response()->json(['message' => __('errors.message_sent')]);
     }
 }

@@ -6,6 +6,8 @@ import { HelmetProvider } from 'react-helmet-async'
 import router from './router'
 import { useAuthStore } from './store/authStore'
 import { getMe } from './api/auth.api'
+import { Footer } from '@/components/layout/Footer'
+import { CookieConsentBanner } from '@/components/layout/CookieConsentBanner'
 import './i18n'
 import './index.css'
 
@@ -37,6 +39,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
+        <Footer />
+        <CookieConsentBanner />
       </QueryClientProvider>
     </HelmetProvider>
   </React.StrictMode>

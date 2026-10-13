@@ -37,6 +37,7 @@ export function PhotoGallery({ photos }: Props) {
             src={current.url}
             alt={`Photo ${activeIdx + 1}`}
             loading={activeIdx === 0 ? 'eager' : 'lazy'}
+            fetchPriority={activeIdx === 0 ? 'high' : 'auto'}
             className="w-full h-full object-cover"
           />
           {listingPhotos.length > 1 && (

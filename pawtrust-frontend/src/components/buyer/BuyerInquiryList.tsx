@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import { getBuyerInquiries } from '@/api/buyer.api'
+import { formatDate } from '@/utils/date'
 import { InquiryDocumentsButton } from '@/components/buyer/InquiryDocumentsButton'
 import { ReviewCta } from '@/components/buyer/ReviewCta'
 import { ContactRevealCard } from '@/components/listings/ContactRevealCard'
@@ -70,9 +71,7 @@ export function BuyerInquiryList() {
                 <p className="text-xs text-gray-400 mt-0.5">
                   {inquiry.breeder.kennel_name ?? inquiry.breeder.name}
                 </p>
-                <p className="text-xs text-gray-400">
-                  {new Date(inquiry.submitted_at).toLocaleDateString()}
-                </p>
+                <p className="text-xs text-gray-400">{formatDate(inquiry.submitted_at)}</p>
               </div>
               <span
                 className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium shrink-0 ${STATUS_BADGE[inquiry.status] ?? 'bg-gray-100 text-gray-600'}`}

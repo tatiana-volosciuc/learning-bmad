@@ -19,6 +19,7 @@ class InquiryController extends Controller
             $request->user(),
             $listing,
             $request->validated('message'),
+            $request->ip(),
         );
 
         return InquiryResource::make($inquiry)

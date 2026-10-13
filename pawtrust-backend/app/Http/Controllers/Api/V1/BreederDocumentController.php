@@ -55,7 +55,7 @@ class BreederDocumentController extends Controller
 
         $this->documentService->softDelete($document);
 
-        return response()->json(['message' => 'Document deleted.']);
+        return response()->json(['message' => __('errors.document_deleted')]);
     }
 
     public function url(int $breederId, int $docId): JsonResponse

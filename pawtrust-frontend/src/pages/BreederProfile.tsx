@@ -7,6 +7,7 @@ import { getInquiryExists, getReviewExists } from '@/api/review.api'
 import { VerifiedBadge } from '@/components/shared/VerifiedBadge'
 import { StarRating } from '@/components/shared/StarRating'
 import { ReviewModal } from '@/components/reviews/ReviewModal'
+import { PageMeta } from '@/components/shared/PageMeta'
 import { useAuthStore } from '@/store/authStore'
 
 function ProfileSkeleton() {
@@ -84,6 +85,11 @@ export default function BreederProfilePage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 py-8">
+        <PageMeta
+          title={data.kennel_name ?? t('breeder.profile.unnamed', 'Unnamed Kennel')}
+          description={data.description?.slice(0, 150)}
+          ogImage={data.og_image_url ?? undefined}
+        />
         {/* Header */}
         <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6 flex flex-col sm:flex-row gap-6">
           {/* Photo */}

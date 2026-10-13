@@ -10,6 +10,10 @@ use Illuminate\Support\Str;
 
 class BreederProfileService
 {
+    public function __construct(private readonly ImageConversionService $imageConversion)
+    {
+    }
+
     public function createProfile(User $user, array $data, ?UploadedFile $photo): BreederProfile
     {
         unset($data['profile_photo']);
@@ -49,8 +53,8 @@ class BreederProfileService
 
     private function storePhoto(BreederProfile $profile, User $user, UploadedFile $photo): void
     {
-        $key = "breeder-photos/{$user->id}/" . Str::uuid() . '.' . $photo->extension();
-        Storage::disk('s3')->put($key, file_get_contents($photo->getRealPath()), 'private');
+        $key = "breeder-photos/{$user->id}/" . Str::uuid() . '.webp';
+        Storage::disk('s3')->put($key, $this->imageConversion->toWebp($photo), 'private');
 
         if ($profile->profile_photo_key) {
             Storage::disk('s3')->delete($profile->profile_photo_key);

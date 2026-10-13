@@ -2,6 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { HelmetProvider } from 'react-helmet-async'
 import SittersPage from './SittersPage'
 import * as sitterApi from '@/api/sitter.api'
 import type { SitterCard, PaginatedSitters } from '@/api/sitter.api'
@@ -56,14 +57,16 @@ function renderSitters(initialUrl = '/sitters') {
     defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
   })
   return render(
-    <QueryClientProvider client={client}>
-      <MemoryRouter initialEntries={[initialUrl]}>
-        <Routes>
-          <Route path="/sitters" element={<SittersPage />} />
-          <Route path="/sitters/:id" element={<div>Sitter detail</div>} />
-        </Routes>
-      </MemoryRouter>
-    </QueryClientProvider>
+    <HelmetProvider>
+      <QueryClientProvider client={client}>
+        <MemoryRouter initialEntries={[initialUrl]}>
+          <Routes>
+            <Route path="/sitters" element={<SittersPage />} />
+            <Route path="/sitters/:id" element={<div>Sitter detail</div>} />
+          </Routes>
+        </MemoryRouter>
+      </QueryClientProvider>
+    </HelmetProvider>
   )
 }
 

@@ -106,8 +106,6 @@ class SitterProfileTest extends TestCase
         SitterProfile::factory()->create(['user_id' => $this->sitter->id]);
 
         $file = UploadedFile::fake()->image('portfolio.jpg')->size(100);
-        // Fake JPEG magic bytes so the controller's signature check passes
-        file_put_contents($file->getPathname(), "\xFF\xD8\xFF" . str_repeat('a', 50));
 
         $this->actingAs($this->sitter, 'sanctum')
             ->postJson('/api/v1/sitter/profile/photos', ['photo' => $file])
@@ -125,7 +123,6 @@ class SitterProfileTest extends TestCase
         }
 
         $file = UploadedFile::fake()->image('portfolio.jpg')->size(100);
-        file_put_contents($file->getPathname(), "\xFF\xD8\xFF" . str_repeat('a', 50));
 
         $this->actingAs($this->sitter, 'sanctum')
             ->postJson('/api/v1/sitter/profile/photos', ['photo' => $file])
