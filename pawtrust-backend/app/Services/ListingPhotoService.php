@@ -19,6 +19,10 @@ class ListingPhotoService
         'webp' => 'RIFF',
     ];
 
+    public function __construct(private readonly ImageConversionService $imageConversion)
+    {
+    }
+
     public function upload(Listing $listing, UploadedFile $file, string $photoType = 'listing'): ListingPhoto
     {
         $this->validateMagicBytes($file);
@@ -30,10 +34,9 @@ class ListingPhotoService
             ]);
         }
 
-        $ext  = $file->guessExtension() ?? 'jpg';
-        $key  = "listing-photos/{$listing->id}/" . Str::uuid() . ".{$ext}";
+        $key = "listing-photos/{$listing->id}/" . Str::uuid() . '.webp';
 
-        Storage::disk('s3')->put($key, file_get_contents($file->getRealPath()), 'private');
+        Storage::disk('s3')->put($key, $this->imageConversion->toWebp($file), 'private');
 
         return $listing->photos()->create([
             's3_key'     => $key,

@@ -36,6 +36,7 @@ export interface Listing {
   featured_until: string | null
   health_certificate: 'on_file' | null
   photos: ListingPhoto[]
+  og_image_url?: string | null
   breeder: BreederSummary | null
   created_at: string
   listed_at?: string | null

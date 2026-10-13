@@ -13,6 +13,10 @@ class SitterPortfolioService
 {
     private const MAX_PHOTOS = 6;
 
+    public function __construct(private readonly ImageConversionService $imageConversion)
+    {
+    }
+
     public function upload(SitterProfile $profile, UploadedFile $file): SitterPortfolioPhoto
     {
         $this->validateMagicBytes($file);
@@ -24,10 +28,9 @@ class SitterPortfolioService
             ]);
         }
 
-        $ext = $file->guessExtension() ?? 'jpg';
-        $key = "sitters/{$profile->id}/portfolio/" . Str::uuid() . ".{$ext}";
+        $key = "sitters/{$profile->id}/portfolio/" . Str::uuid() . '.webp';
 
-        Storage::disk('s3')->put($key, file_get_contents($file->getRealPath()), 'private');
+        Storage::disk('s3')->put($key, $this->imageConversion->toWebp($file), 'private');
 
         return $profile->portfolioPhotos()->create([
             's3_key'     => $key,

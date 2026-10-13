@@ -9,6 +9,7 @@ import { BreederSummaryCard } from '@/components/breeders/BreederSummaryCard'
 import { ReviewsList } from '@/components/listings/ReviewsList'
 import { InquiryCTA } from '@/components/listings/InquiryCTA'
 import { FeaturedBadge } from '@/components/listings/FeaturedBadge'
+import { PageMeta } from '@/components/shared/PageMeta'
 
 function calcAge(dob: string | null): string | null {
   if (!dob) return null
@@ -77,6 +78,12 @@ export default function ListingDetailPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-8">
+        <PageMeta
+          title={`${data.title} — ${data.breed}`}
+          description={data.description?.slice(0, 150)}
+          ogImage={data.og_image_url ?? undefined}
+          ogType="article"
+        />
         <Breadcrumb
           items={[
             { label: t('listing_detail.breadcrumb.home', 'Home'), href: '/' },

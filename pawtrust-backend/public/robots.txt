@@ -1,2 +1,9 @@
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /sitter/
+Disallow: /buyer/
+Disallow: /breeder/
+Sitemap: https://pawtrust.md/sitemap.xml

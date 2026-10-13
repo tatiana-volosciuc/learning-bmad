@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { getSitters, type SitterFilters, type SitterService } from '@/api/sitter.api'
 import { SitterCard } from '@/components/sitters/SitterCard'
 import { SitterCardSkeleton } from '@/components/sitters/SitterCardSkeleton'
+import { PageMeta } from '@/components/shared/PageMeta'
 
 const SERVICE_OPTIONS: SitterService[] = ['boarding', 'dog_walking', 'day_care', 'drop_in']
 const DEBOUNCE_MS = 400
@@ -145,6 +146,13 @@ export default function SittersPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-8">
+        <PageMeta
+          title={t('seo.sitters_title', 'Find Pet Sitters')}
+          description={t(
+            'seo.sitters_description',
+            'Pet sitters in Chisinau, Balti and across Moldova.'
+          )}
+        />
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-gray-900">
             {t('sitters_page.title', 'Pet Sitters')}

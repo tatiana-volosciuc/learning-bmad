@@ -24,6 +24,7 @@ import SearchPage from '@/pages/Search'
 import ListingDetailPage from '@/pages/ListingDetail'
 import PrivacyPolicyPage from '@/pages/PrivacyPolicyPage'
 import TermsOfServicePage from '@/pages/TermsOfServicePage'
+import HomePage from '@/pages/HomePage'
 import { ProtectedRoute, AdminRoute } from '@/components/common/ProtectedRoute'
 import { useAuthStore } from '@/store/authStore'
 
@@ -50,7 +51,7 @@ function DashboardRedirect() {
 
 const router = createBrowserRouter([
   // Public routes
-  { path: '/', element: <div>PawTrust Home</div> },
+  { path: '/', element: <HomePage /> },
   { path: '/search', element: <SearchPage /> },
   { path: '/sitters', element: <SittersPage /> },
   { path: '/sitters/:id', element: <SitterProfilePage /> },

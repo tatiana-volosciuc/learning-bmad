@@ -11,7 +11,9 @@
     "preview": "vite preview",
     "type-check": "tsc --noEmit",
     "test": "vitest",
-    "test:ci": "vitest run"
+    "test:ci": "vitest run",
+    "lighthouse:search": "lighthouse http://localhost:4173/search --preset=desktop --output=html --output-path=docs/performance/lighthouse-search.html",
+    "lighthouse:listing": "lighthouse http://localhost:4173/listings/1 --preset=desktop --output=html --output-path=docs/performance/lighthouse-listing-detail.html"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.0.0",
@@ -43,6 +45,7 @@
     "eslint-plugin-react": "^7.34.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "jsdom": "^25.0.1",
+    "lighthouse": "^11.7.1",
     "postcss": "^8.4.0",
     "prettier": "^3.3.0",
     "tailwindcss": "^3.4.0",

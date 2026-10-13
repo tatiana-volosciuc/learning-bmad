@@ -2,6 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { HelmetProvider } from 'react-helmet-async'
 import axios from 'axios'
 import BreederProfilePage from './BreederProfile'
 import * as breedersApi from '@/api/breeders.api'
@@ -42,13 +43,15 @@ function renderPage(id = '42') {
     defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
   })
   return render(
-    <QueryClientProvider client={client}>
-      <MemoryRouter initialEntries={[`/breeders/${id}`]}>
-        <Routes>
-          <Route path="/breeders/:id" element={<BreederProfilePage />} />
-        </Routes>
-      </MemoryRouter>
-    </QueryClientProvider>
+    <HelmetProvider>
+      <QueryClientProvider client={client}>
+        <MemoryRouter initialEntries={[`/breeders/${id}`]}>
+          <Routes>
+            <Route path="/breeders/:id" element={<BreederProfilePage />} />
+          </Routes>
+        </MemoryRouter>
+      </QueryClientProvider>
+    </HelmetProvider>
   )
 }
 
