@@ -23,6 +23,12 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->api(prepend: [
             \App\Http\Middleware\SetLocale::class,
         ]);
+
+        // Applies to every response (web + api), including the Stripe webhook.
+        $middleware->append(\App\Http\Middleware\SecurityHeaders::class);
+
+        // Trust all proxies — app sits behind an AWS load balancer in production.
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->renderable(function (AuthenticationException $e, $request) {
