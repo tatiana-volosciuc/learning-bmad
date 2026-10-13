@@ -14,7 +14,7 @@ class SitterDashboardController extends Controller
         $profile = $request->user()->sitterProfile;
 
         if (!$profile) {
-            return response()->json(['message' => 'Profile not found.'], 404);
+            return response()->json(['message' => __('errors.profile_not_found')], 404);
         }
 
         $submissions = $profile->contactSubmissions()->paginate(20);

@@ -17,13 +17,13 @@ class InquiryService
         // Defensive second layer: route middleware already enforces role:buyer
         if ($buyer->hasRole('breeder') || $buyer->hasRole('admin')) {
             throw new HttpResponseException(
-                response()->json(['message' => 'Only buyers may submit inquiries.'], 403)
+                response()->json(['message' => __('errors.buyers_only')], 403)
             );
         }
 
         if ($listing->status !== 'active') {
             throw new HttpResponseException(
-                response()->json(['message' => 'This listing is not available for inquiries.'], 422)
+                response()->json(['message' => __('errors.listing_not_available_for_inquiries')], 422)
             );
         }
 

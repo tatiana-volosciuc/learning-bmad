@@ -7,6 +7,7 @@
     "password": "Пароль",
     "password_required": "Пароль обязателен",
     "forgot_password": "Забыли пароль?",
+    "forgot_password_coming_soon": "Сброс пароля скоро будет доступен",
     "login": "Войти",
     "signing_in": "Вход…",
     "invalid_credentials": "Неверный email или пароль.",
@@ -28,7 +29,8 @@
     "yes": "Да",
     "back": "Назад",
     "prev": "Назад",
-    "next": "Далее"
+    "next": "Далее",
+    "language_changed": "Язык изменён на {{lng}}"
   },
   "buyer": {
     "dashboard": {
@@ -103,6 +105,7 @@
       "col_status": "Статус",
       "btn_review": "Рассмотреть",
       "btn_preview": "Просмотр",
+      "preview_error": "Не удалось загрузить предпросмотр документа.",
       "modal_title": "Решение по верификации",
       "status_under_review": "Поставить на рассмотрение",
       "status_approve": "Одобрить",
@@ -296,6 +299,7 @@
     "inquiry_cta_buyer": "Отправить заявку для доступа к контактам и документам",
     "no_reviews": "Отзывов пока нет.",
     "see_all_reviews": "Все отзывы на странице заводчика →",
+    "not_found": "Объявление не найдено или больше недоступно.",
     "breadcrumb": {
       "home": "Главная",
       "browse": "Объявления"

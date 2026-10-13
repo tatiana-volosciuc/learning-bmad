@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useQuery } from '@tanstack/react-query'
 import { getBreederInquiries, type BreederInquiry } from '@/api/inquiry.api'
+import { formatDate } from '@/utils/date'
 
 const STATUS_BADGE: Record<string, string> = {
   contact_revealed: 'bg-blue-100 text-blue-700',
@@ -52,9 +53,7 @@ export function BreederInquiryList() {
               <tr key={inquiry.id} className="hover:bg-gray-50">
                 <td className="px-4 py-3 font-medium text-gray-900">{inquiry.listing.title}</td>
                 <td className="px-4 py-3 text-gray-600">{inquiry.buyer.name}</td>
-                <td className="px-4 py-3 text-gray-500">
-                  {new Date(inquiry.submitted_at).toLocaleDateString()}
-                </td>
+                <td className="px-4 py-3 text-gray-500">{formatDate(inquiry.submitted_at)}</td>
                 <td className="px-4 py-3 text-gray-600 max-w-xs truncate">
                   {inquiry.message ?? (
                     <span className="italic text-gray-400">

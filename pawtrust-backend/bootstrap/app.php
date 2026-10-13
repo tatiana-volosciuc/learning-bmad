@@ -19,11 +19,15 @@ return Application::configure(basePath: dirname(__DIR__))
             'role'       => \Spatie\Permission\Middleware\RoleMiddleware::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
         ]);
+
+        $middleware->api(prepend: [
+            \App\Http\Middleware\SetLocale::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->renderable(function (AuthenticationException $e, $request) {
             if ($request->expectsJson()) {
-                return response()->json(['message' => 'Invalid credentials.'], 401);
+                return response()->json(['message' => __('errors.invalid_credentials')], 401);
             }
         });
 

@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 
-const LOCALES = ['ro', 'ru', 'en'] as const
+const LOCALES = ['ro', 'ru'] as const
 
 export function LocaleSwitcher() {
-  const { i18n } = useTranslation()
+  const { i18n, t } = useTranslation()
   const current = i18n.resolvedLanguage ?? i18n.language
 
   return (
@@ -20,6 +20,9 @@ export function LocaleSwitcher() {
           </button>
         </span>
       ))}
+      <span aria-live="polite" className="sr-only">
+        {t('common.language_changed', { lng: current.toUpperCase() })}
+      </span>
     </div>
   )
 }

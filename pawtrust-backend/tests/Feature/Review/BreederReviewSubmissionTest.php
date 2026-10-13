@@ -109,7 +109,7 @@ class BreederReviewSubmissionTest extends TestCase
                 'text'   => 'Another attempt.',
             ])
             ->assertStatus(409)
-            ->assertJson(['message' => 'You have already reviewed this breeder.']);
+            ->assertJson(['message' => __('errors.duplicate_review')]);
     }
 
     public function test_buyer_without_inquiry_cannot_review(): void

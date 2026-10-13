@@ -56,7 +56,9 @@ export default function ListingDetailPage() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-lg text-gray-700 mb-3">Listing not found or no longer available.</p>
+          <p className="text-lg text-gray-700 mb-3">
+            {t('listing_detail.not_found', 'Listing not found or no longer available.')}
+          </p>
           <Link to="/search" className="text-blue-600 hover:underline text-sm">
             ← {t('search.title', 'Browse Pets')}
           </Link>

@@ -7,6 +7,7 @@
     "password": "Parolă",
     "password_required": "Parola este obligatorie",
     "forgot_password": "Ai uitat parola?",
+    "forgot_password_coming_soon": "Resetarea parolei va fi disponibilă în curând",
     "login": "Conectare",
     "signing_in": "Se conectează…",
     "invalid_credentials": "Email sau parolă incorectă.",
@@ -28,7 +29,8 @@
     "yes": "Da",
     "back": "Înapoi",
     "prev": "Înapoi",
-    "next": "Înainte"
+    "next": "Înainte",
+    "language_changed": "Limba a fost schimbată în {{lng}}"
   },
   "buyer": {
     "dashboard": {
@@ -103,6 +105,7 @@
       "col_status": "Status",
       "btn_review": "Revizuiește",
       "btn_preview": "Previzualizează",
+      "preview_error": "Nu s-a putut încărca previzualizarea documentului.",
       "modal_title": "Decizie verificare",
       "status_under_review": "Pus în revizuire",
       "status_approve": "Aprobă",
@@ -273,6 +276,7 @@
     "inquiry_cta_buyer": "Trimite cerere pentru acces la contact și documente",
     "no_reviews": "Nicio recenzie încă.",
     "see_all_reviews": "Vezi toate recenziile pe profilul crescătorului →",
+    "not_found": "Anunțul nu a fost găsit sau nu mai este disponibil.",
     "breadcrumb": {
       "home": "Acasă",
       "browse": "Anunțuri"

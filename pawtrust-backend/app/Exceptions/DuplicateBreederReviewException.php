@@ -8,6 +8,6 @@ class DuplicateBreederReviewException extends RuntimeException
 {
     public function __construct()
     {
-        parent::__construct('You have already reviewed this breeder.');
+        parent::__construct(__('errors.duplicate_review'));
     }
 }

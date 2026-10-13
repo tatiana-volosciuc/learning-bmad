@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { deleteBreederDocument, type BreederDocument } from '@/api/breeders.api'
+import { formatDate } from '@/utils/date'
 
 const STATUS_BADGE: Record<string, string> = {
   pending: 'bg-yellow-100 text-yellow-700',
@@ -55,7 +56,7 @@ export function DocumentList({ breederId, documents }: Props) {
               </td>
               <td className="px-4 py-3 text-gray-600 break-all max-w-xs">{doc.filename}</td>
               <td className="px-4 py-3 text-gray-400 whitespace-nowrap">
-                {new Date(doc.uploaded_at).toLocaleDateString()}
+                {formatDate(doc.uploaded_at)}
               </td>
               <td className="px-4 py-3">
                 <span

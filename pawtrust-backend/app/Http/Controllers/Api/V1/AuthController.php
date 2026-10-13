@@ -25,7 +25,7 @@ class AuthController extends Controller
                 'token' => $result['token'],
                 'user'  => new UserResource($result['user']),
             ],
-            'message' => 'Registration successful.',
+            'message' => __('errors.registration_successful'),
         ], 201);
     }
 
@@ -38,7 +38,7 @@ class AuthController extends Controller
                 'token' => $result['token'],
                 'user'  => new UserResource($result['user']),
             ],
-            'message' => 'Login successful.',
+            'message' => __('errors.login_successful'),
         ]);
     }
 
@@ -46,7 +46,7 @@ class AuthController extends Controller
     {
         $this->authService->logout($request->user());
 
-        return response()->json(['message' => 'Logged out successfully.']);
+        return response()->json(['message' => __('errors.logged_out_successfully')]);
     }
 
     public function me(Request $request): JsonResponse

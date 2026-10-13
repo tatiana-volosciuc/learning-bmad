@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { getVerificationRequests, type AdminVerificationRequest } from '@/api/admin.api'
+import { formatDate } from '@/utils/date'
 import ReviewModal from './ReviewModal'
 
 type StatusFilter = '' | 'pending' | 'under_review' | 'approved' | 'rejected'
@@ -97,7 +98,7 @@ export default function VerificationQueue() {
                   <tr key={req.id}>
                     <td className="px-4 py-3">{req.breeder.name}</td>
                     <td className="px-4 py-3">{req.breeder.kennel_name ?? '—'}</td>
-                    <td className="px-4 py-3">{new Date(req.submitted_at).toLocaleDateString()}</td>
+                    <td className="px-4 py-3">{formatDate(req.submitted_at)}</td>
                     <td className="px-4 py-3">{req.documents.length}</td>
                     <td className="px-4 py-3">
                       <span

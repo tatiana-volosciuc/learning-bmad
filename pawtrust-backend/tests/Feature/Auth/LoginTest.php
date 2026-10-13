@@ -41,7 +41,7 @@ class LoginTest extends TestCase
         ]);
 
         $response->assertStatus(401)
-            ->assertJson(['message' => 'Invalid credentials.']);
+            ->assertJson(['message' => __('errors.invalid_credentials')]);
     }
 
     public function test_login_fails_with_nonexistent_email(): void
@@ -53,7 +53,7 @@ class LoginTest extends TestCase
 
         // MUST return same message as wrong password — no enumeration
         $response->assertStatus(401)
-            ->assertJson(['message' => 'Invalid credentials.']);
+            ->assertJson(['message' => __('errors.invalid_credentials')]);
     }
 
     public function test_login_response_does_not_expose_password(): void

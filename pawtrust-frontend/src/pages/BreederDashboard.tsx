@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-do
 import toast from 'react-hot-toast'
 import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { useAuthStore } from '@/store/authStore'
+import { formatDate } from '@/utils/date'
 import {
   getMyBreederProfile,
   getVerificationStatus,
@@ -298,7 +299,7 @@ export default function BreederDashboard() {
                           {listing.price} {listing.currency}
                         </td>
                         <td className="px-4 py-3 text-gray-400">
-                          {new Date(listing.created_at).toLocaleDateString()}
+                          {formatDate(listing.created_at)}
                         </td>
                         <td className="px-4 py-3">
                           {listing.status === 'pending_payment' && (

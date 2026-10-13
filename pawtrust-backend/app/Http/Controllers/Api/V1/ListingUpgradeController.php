@@ -23,11 +23,11 @@ class ListingUpgradeController extends Controller
         }
 
         if ($listing->status !== 'active') {
-            return response()->json(['message' => 'Listing must be active to upgrade.'], 422);
+            return response()->json(['message' => __('errors.listing_must_be_active_to_upgrade')], 422);
         }
 
         if ($listing->is_featured) {
-            return response()->json(['message' => 'Listing is already featured.'], 400);
+            return response()->json(['message' => __('errors.listing_already_featured')], 400);
         }
 
         $checkoutUrl = $this->paymentService->upgradeToFeatured($listing);

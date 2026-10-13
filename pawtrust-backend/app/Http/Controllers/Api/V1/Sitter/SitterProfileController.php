@@ -20,7 +20,7 @@ class SitterProfileController extends Controller
     public function store(SitterProfileRequest $request): JsonResponse
     {
         if ($request->user()->sitterProfile()->exists()) {
-            return response()->json(['message' => 'A sitter profile already exists for this account.'], Response::HTTP_CONFLICT);
+            return response()->json(['message' => __('errors.sitter_profile_already_exists')], Response::HTTP_CONFLICT);
         }
 
         $profile = $this->profileService->createProfile($request->user(), $request->validated());
@@ -33,7 +33,7 @@ class SitterProfileController extends Controller
         $profile = $request->user()->sitterProfile;
 
         if (!$profile) {
-            return response()->json(['message' => 'Profile not found.'], 404);
+            return response()->json(['message' => __('errors.profile_not_found')], 404);
         }
 
         $profile = $this->profileService->updateProfile($profile, $request->validated());
@@ -46,7 +46,7 @@ class SitterProfileController extends Controller
         $profile = $request->user()->sitterProfile;
 
         if (!$profile) {
-            return response()->json(['message' => 'Profile not found.'], 404);
+            return response()->json(['message' => __('errors.profile_not_found')], 404);
         }
 
         $profile->load('portfolioPhotos');
