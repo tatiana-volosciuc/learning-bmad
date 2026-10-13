@@ -231,6 +231,14 @@
     "standard_price": "Anunț standard — €3",
     "featured_price": "Anunț promovat — €8"
   },
+  "featured": {
+    "badge_label": "Promovat",
+    "upgrade_cta": "Promovează anunțul (€5)",
+    "already_featured": "Anunț promovat",
+    "upgrade_success_toast": "Anunțul tău este acum promovat!",
+    "upgrade_cancelled": "Promovare anulată.",
+    "upgrade_price_note": "Promovarea costă €5 (diferența față de anunțul standard de €3)"
+  },
   "badge": {
     "verified_label": "Verificat",
     "unverified_label": "Neverificat",

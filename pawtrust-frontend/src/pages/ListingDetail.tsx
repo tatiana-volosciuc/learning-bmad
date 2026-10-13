@@ -8,6 +8,7 @@ import { AchievementsList } from '@/components/breeders/AchievementsList'
 import { BreederSummaryCard } from '@/components/breeders/BreederSummaryCard'
 import { ReviewsList } from '@/components/listings/ReviewsList'
 import { InquiryCTA } from '@/components/listings/InquiryCTA'
+import { FeaturedBadge } from '@/components/listings/FeaturedBadge'
 
 function calcAge(dob: string | null): string | null {
   if (!dob) return null
@@ -91,11 +92,7 @@ export default function ListingDetailPage() {
             <div>
               <div className="flex items-start justify-between gap-2 mb-1">
                 <h1 className="text-2xl font-bold text-gray-900">{data.title}</h1>
-                {data.featured && (
-                  <span className="shrink-0 px-2 py-0.5 bg-amber-500 text-white text-xs font-semibold rounded-full">
-                    Featured
-                  </span>
-                )}
+                {data.featured && <FeaturedBadge size="md" />}
               </div>
               <p className="text-gray-500 text-sm capitalize">
                 {data.species} · {data.breed} · {data.gender}

@@ -38,6 +38,7 @@ class ListingFactory extends Factory
             'status'         => 'active',
             'listing_type'   => 'featured',
             'featured_until' => now()->addDays(7),
+            'is_featured'    => true,
         ]);
     }
 }

@@ -6,6 +6,7 @@ import type { ListingCard as ListingCardType } from '@/api/listings.api'
 import { saveListing, unsaveListing } from '@/api/buyer.api'
 import { useAuthStore } from '@/store/authStore'
 import { VerifiedBadge } from '@/components/shared/VerifiedBadge'
+import { FeaturedBadge } from '@/components/listings/FeaturedBadge'
 
 interface Props {
   listing: ListingCardType
@@ -78,11 +79,7 @@ export function ListingCard({ listing }: Props) {
 
         {/* Badges */}
         <div className="absolute top-2 left-2 flex flex-col gap-1">
-          {listing.featured && (
-            <span className="px-2 py-0.5 bg-amber-500 text-white text-xs font-semibold rounded-full">
-              {t('listing_card.featured', 'Featured')}
-            </span>
-          )}
+          {listing.featured && <FeaturedBadge size="sm" />}
         </div>
 
         {user?.role === 'buyer' && (

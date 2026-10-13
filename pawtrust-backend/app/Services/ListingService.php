@@ -21,11 +21,15 @@ class ListingService
 
         $skipPayment = config('app.skip_listing_payment');
         $status      = $skipPayment ? 'active' : 'pending_payment';
+        $listingType = $data['listing_type'] ?? 'standard';
 
         return Listing::create(array_merge($data, [
             'breeder_profile_id' => $profile->id,
             'status'             => $status,
             'listed_at'          => $skipPayment ? now() : null,
+            // A listing bought as 'featured' upfront is featured as soon as it goes active —
+            // no separate upgrade payment needed (Story 5.4 AC2).
+            'is_featured'        => $skipPayment && $listingType === 'featured',
         ]));
     }
 
@@ -80,8 +84,9 @@ class ListingService
             $query->whereHas('breederProfile', fn ($q) => $q->whereNotNull('verified_at'));
         }
 
-        $query->orderByRaw('CASE WHEN featured_until > NOW() THEN 0 ELSE 1 END')
-              ->orderByDesc('created_at');
+        // Featured listings sort first; within each tier, most recently listed first (Story 5.4 §3).
+        $query->orderByDesc('is_featured')
+              ->orderByDesc('listed_at');
 
         $perPage = $filters['per_page'] ?? 20;
 

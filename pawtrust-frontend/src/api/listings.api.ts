@@ -40,6 +40,7 @@ export interface Listing {
   created_at: string
   listed_at?: string | null
   can_pay?: boolean
+  featured?: boolean
 }
 
 export interface CreateListingPayload {
@@ -67,6 +68,9 @@ export const getMyListings = () => axiosClient.get<{ data: Listing[] }>('/breede
 
 export const initiateListingPayment = (listingId: number) =>
   axiosClient.post<{ data: { checkout_url: string } }>(`/listings/${listingId}/payment/initiate`)
+
+export const upgradeListingToFeatured = (listingId: number) =>
+  axiosClient.post<{ data: { checkout_url: string } }>(`/listings/${listingId}/upgrade-to-featured`)
 
 export interface ListingSearchParams {
   q?: string

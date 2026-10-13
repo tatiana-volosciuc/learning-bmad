@@ -28,9 +28,11 @@ vi.mock('@/api/breeders.api', () => ({
 
 const mockGetMyListings = vi.fn()
 const mockInitiateListingPayment = vi.fn()
+const mockUpgradeListingToFeatured = vi.fn()
 vi.mock('@/api/listings.api', () => ({
   getMyListings: (...args: unknown[]) => mockGetMyListings(...args),
   initiateListingPayment: (...args: unknown[]) => mockInitiateListingPayment(...args),
+  upgradeListingToFeatured: (...args: unknown[]) => mockUpgradeListingToFeatured(...args),
 }))
 
 vi.mock('@/api/inquiry.api', () => ({
@@ -63,6 +65,7 @@ function makeListing(overrides: Partial<Listing> = {}): Listing {
     photos: [],
     breeder: null,
     created_at: new Date().toISOString(),
+    featured: false,
     ...overrides,
   }
 }
@@ -143,6 +146,65 @@ describe('BreederDashboard payment flow', () => {
 
     await waitFor(() =>
       expect(mockToast).toHaveBeenCalledWith('Payment cancelled. Your listing is still pending.')
+    )
+  })
+})
+
+describe('BreederDashboard featured upgrade flow', () => {
+  it('shows Upgrade to Featured button for active standard listings', async () => {
+    mockGetMyListings.mockResolvedValue({
+      data: { data: [makeListing({ status: 'active', featured: false })] },
+    })
+
+    renderDashboard()
+
+    await waitFor(() => expect(screen.getByText('Upgrade to Featured (€5)')).toBeInTheDocument())
+  })
+
+  it('shows FeaturedBadge instead of upgrade button for active featured listings', async () => {
+    mockGetMyListings.mockResolvedValue({
+      data: { data: [makeListing({ status: 'active', featured: true })] },
+    })
+
+    renderDashboard()
+
+    await waitFor(() => expect(screen.getByText('Golden Retriever Puppy')).toBeInTheDocument())
+    expect(screen.getByText('Featured')).toBeInTheDocument()
+    expect(screen.queryByText('Upgrade to Featured (€5)')).not.toBeInTheDocument()
+  })
+
+  it('clicking Upgrade button calls upgradeListingToFeatured and redirects to checkout URL', async () => {
+    mockGetMyListings.mockResolvedValue({
+      data: { data: [makeListing({ id: 9, status: 'active', featured: false })] },
+    })
+    mockUpgradeListingToFeatured.mockResolvedValue({
+      data: { data: { checkout_url: 'https://checkout.stripe.com/upgrade-session' } },
+    })
+
+    const originalLocation = window.location
+    // @ts-expect-error - jsdom location is not writable by default
+    delete window.location
+    window.location = { ...originalLocation, href: '' } as Location
+
+    renderDashboard()
+
+    fireEvent.click(await screen.findByText('Upgrade to Featured (€5)'))
+
+    await waitFor(() => expect(mockUpgradeListingToFeatured).toHaveBeenCalledWith(9))
+    await waitFor(() =>
+      expect(window.location.href).toBe('https://checkout.stripe.com/upgrade-session')
+    )
+
+    window.location = originalLocation
+  })
+
+  it('shows upgrade success toast on ?payment=success&action=upgrade', async () => {
+    mockGetMyListings.mockResolvedValue({ data: { data: [makeListing()] } })
+
+    renderDashboard('/breeder/dashboard?payment=success&action=upgrade&listing_id=7')
+
+    await waitFor(() =>
+      expect(mockToast.success).toHaveBeenCalledWith('Your listing is now featured!')
     )
   })
 })

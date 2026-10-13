@@ -17,7 +17,7 @@ class Listing extends Model
         'breeder_profile_id', 'title', 'description', 'species', 'breed',
         'gender', 'date_of_birth', 'price', 'currency', 'location',
         'status', 'listing_type', 'featured_until', 'health_certificate_key',
-        'listed_at', 'stripe_checkout_session_id',
+        'listed_at', 'stripe_checkout_session_id', 'is_featured',
     ];
 
     protected $casts = [
@@ -25,6 +25,7 @@ class Listing extends Model
         'featured_until' => 'datetime',
         'listed_at'      => 'datetime',
         'price'          => 'decimal:2',
+        'is_featured'    => 'boolean',
     ];
 
     public function breederProfile(): BelongsTo

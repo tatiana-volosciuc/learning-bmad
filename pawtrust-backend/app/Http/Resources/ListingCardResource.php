@@ -22,7 +22,7 @@ class ListingCardResource extends JsonResource
             'breeder_name' => $this->breederProfile?->kennel_name ?? $this->breederProfile?->display_name,
             'verified'     => (bool) $this->breederProfile?->verified_at,
             'listing_type' => $this->listing_type,
-            'featured'     => $this->featured_until && $this->featured_until->isFuture(),
+            'featured'     => (bool) $this->is_featured,
             'created_at'   => $this->created_at,
             // Known MVP performance hotspot: one extra query per card for authenticated buyers.
             // Acceptable at current scale; optimize with a bulk-loaded saved-id set if it becomes a bottleneck.

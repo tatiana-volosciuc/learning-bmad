@@ -10,13 +10,19 @@ import {
   getVerificationStatus,
   type BreederDocument,
 } from '@/api/breeders.api'
-import { getMyListings, initiateListingPayment, type Listing } from '@/api/listings.api'
+import {
+  getMyListings,
+  initiateListingPayment,
+  upgradeListingToFeatured,
+  type Listing,
+} from '@/api/listings.api'
 import { BreederProfileForm } from '@/components/breeders/BreederProfileForm'
 import { DocumentUpload } from '@/components/breeders/DocumentUpload'
 import { DocumentList } from '@/components/breeders/DocumentList'
 import VerificationStatusCard from '@/components/breeders/VerificationStatusCard'
 import VerificationSubmitModal from '@/components/breeders/VerificationSubmitModal'
 import { BreederInquiryList } from '@/components/breeder/BreederInquiryList'
+import { FeaturedBadge } from '@/components/listings/FeaturedBadge'
 import { getBreederUnreadCount } from '@/api/inquiry.api'
 
 const STATUS_BADGE: Record<Listing['status'], string> = {
@@ -62,20 +68,31 @@ export default function BreederDashboard() {
     retry: false,
   })
 
-  // Stripe redirect landing — ?payment=success|cancelled&listing_id=... (Story 5.3)
+  // Stripe redirect landing — ?payment=success|cancelled&action=activate|upgrade&listing_id=... (Stories 5.3/5.4)
   useEffect(() => {
     const payment = searchParams.get('payment')
     if (!payment) return
 
+    const isUpgrade = searchParams.get('action') === 'upgrade'
+
     if (payment === 'success') {
-      toast.success(t('payment.success_toast', 'Your listing is now live!'))
+      toast.success(
+        isUpgrade
+          ? t('featured.upgrade_success_toast', 'Your listing is now featured!')
+          : t('payment.success_toast', 'Your listing is now live!')
+      )
       queryClient.invalidateQueries({ queryKey: ['myListings'] })
     } else if (payment === 'cancelled') {
-      toast(t('payment.cancelled_toast', 'Payment cancelled. Your listing is still pending.'))
+      toast(
+        isUpgrade
+          ? t('featured.upgrade_cancelled', 'Upgrade cancelled.')
+          : t('payment.cancelled_toast', 'Payment cancelled. Your listing is still pending.')
+      )
     }
 
     const next = new URLSearchParams(searchParams)
     next.delete('payment')
+    next.delete('action')
     next.delete('listing_id')
     setSearchParams(next, { replace: true })
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -83,6 +100,13 @@ export default function BreederDashboard() {
 
   const paymentMutation = useMutation({
     mutationFn: (listingId: number) => initiateListingPayment(listingId),
+    onSuccess: (res) => {
+      window.location.href = res.data.data.checkout_url
+    },
+  })
+
+  const upgradeMutation = useMutation({
+    mutationFn: (listingId: number) => upgradeListingToFeatured(listingId),
     onSuccess: (res) => {
       window.location.href = res.data.data.checkout_url
     },
@@ -264,6 +288,11 @@ export default function BreederDashboard() {
                               ? t('payment.status_pending', 'Payment Pending')
                               : listing.status}
                           </span>
+                          {listing.status === 'active' && listing.featured && (
+                            <span className="ml-1.5 inline-block align-middle">
+                              <FeaturedBadge size="sm" />
+                            </span>
+                          )}
                         </td>
                         <td className="px-4 py-3 text-gray-600">
                           {listing.price} {listing.currency}
@@ -282,6 +311,18 @@ export default function BreederDashboard() {
                               {paymentMutation.isPending
                                 ? t('common.loading', 'Loading…')
                                 : t('payment.btn_complete_payment', 'Complete Payment')}
+                            </button>
+                          )}
+                          {listing.status === 'active' && !listing.featured && (
+                            <button
+                              type="button"
+                              disabled={upgradeMutation.isPending}
+                              onClick={() => upgradeMutation.mutate(listing.id)}
+                              className="px-3 py-1.5 text-xs font-medium bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white rounded-md transition-colors"
+                            >
+                              {upgradeMutation.isPending
+                                ? t('common.loading', 'Loading…')
+                                : t('featured.upgrade_cta', 'Upgrade to Featured (€5)')}
                             </button>
                           )}
                         </td>

@@ -183,6 +183,14 @@
     "standard_price": "Standard listing — €3",
     "featured_price": "Featured listing — €8"
   },
+  "featured": {
+    "badge_label": "Featured",
+    "upgrade_cta": "Upgrade to Featured (€5)",
+    "already_featured": "Featured listing",
+    "upgrade_success_toast": "Your listing is now featured!",
+    "upgrade_cancelled": "Upgrade cancelled.",
+    "upgrade_price_note": "Upgrading costs €5 (the difference from the €3 standard listing)"
+  },
   "badge": {
     "verified_label": "Verified",
     "unverified_label": "Unverified",

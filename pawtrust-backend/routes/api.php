@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\V1\InquiryController;
 use App\Http\Controllers\Api\V1\ListingController;
 use App\Http\Controllers\Api\V1\ListingPaymentController;
 use App\Http\Controllers\Api\V1\ListingPhotoController;
+use App\Http\Controllers\Api\V1\ListingUpgradeController;
 use App\Http\Controllers\Api\V1\ReviewController;
 use App\Http\Controllers\Api\V1\Sitter\SitterDashboardController;
 use App\Http\Controllers\Api\V1\SitterDiscoveryController;
@@ -103,6 +104,7 @@ Route::prefix('v1')->group(function () {
         Route::delete('/listings/{listing}/photos/{photo}',         [ListingPhotoController::class, 'destroy']);
         Route::post('/listings/{listing}/health-certificate',       [HealthCertificateController::class, 'store']);
         Route::post('/listings/{listing}/payment/initiate',         [ListingPaymentController::class, 'initiate']);
+        Route::post('/listings/{listing}/upgrade-to-featured',      [ListingUpgradeController::class, 'upgrade']);
 
         // Breeder inquiry management
         Route::prefix('breeder')->group(function () {

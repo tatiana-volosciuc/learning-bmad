@@ -31,9 +31,14 @@ class StripeWebhookController extends Controller
         if ($event->type === 'checkout.session.completed') {
             $session   = $event->data->object;
             $listingId = $session->metadata->listing_id ?? null;
+            $action    = $session->metadata->action ?? 'activate_listing';
 
             if ($listingId) {
-                $this->paymentService->handleSuccessfulPayment((int) $listingId, $session->id);
+                match ($action) {
+                    'activate_listing'    => $this->paymentService->handleSuccessfulPayment((int) $listingId, $session->id),
+                    'upgrade_to_featured' => $this->paymentService->handleSuccessfulUpgrade((int) $listingId, $session->id),
+                    default               => null, // unknown action — log and move on
+                };
             }
         }
 

@@ -19,6 +19,7 @@ class StripeService
     public function createCheckoutSession(Listing $listing, string $listingType, string $successUrl, string $cancelUrl): array
     {
         $priceCents = config("stripe.prices.{$listingType}");
+        $action     = $listingType === 'upgrade' ? 'upgrade_to_featured' : 'activate_listing';
 
         $session = $this->client->checkout->sessions->create([
             'mode'       => 'payment',
@@ -33,6 +34,7 @@ class StripeService
             'metadata'    => [
                 'listing_id'   => (string) $listing->id,
                 'listing_type' => $listingType,
+                'action'       => $action,
             ],
             'success_url' => $successUrl,
             'cancel_url'  => $cancelUrl,
