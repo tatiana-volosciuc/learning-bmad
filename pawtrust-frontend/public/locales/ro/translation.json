@@ -168,7 +168,76 @@
     "sidebar": {
       "my_profile": "Profilul meu",
       "publish_listing": "Publică anunț"
+    },
+    "service_boarding": "Îngrijire la gazdă",
+    "service_dog_walking": "Plimbat câini",
+    "service_day_care": "Îngrijire de zi",
+    "service_drop_in": "Vizite scurte",
+    "contact_btn": "Contactează",
+    "contact_btn_named": "Contactează pe {{name}}",
+    "contact_modal_title": "Trimite un mesaj către {{name}}",
+    "contact_name_label": "Numele tău",
+    "contact_email_label": "Emailul tău",
+    "contact_message_label": "Mesaj (min 10, max 1000 caractere)",
+    "contact_submitting": "Se trimite…",
+    "contact_success": "Mesajul tău a fost trimis!",
+    "contact_rate_limited": "Prea multe mesaje. Încearcă din nou mai târziu.",
+    "dashboard_profile_tab": "Profilul meu",
+    "dashboard_messages_tab": "Mesaje primite",
+    "incomplete_banner": "Profilul tău este incomplet. Completează-l pentru a apărea în căutări.",
+    "no_messages": "Niciun mesaj primit încă.",
+    "profile_saved": "Profil salvat!",
+    "profile": {
+      "not_found": "Profilul nu a fost găsit",
+      "years_experience": "{{n}} ani de experiență",
+      "services": "Servicii Oferite",
+      "rates": "Tarife",
+      "languages": "Limbi Vorbite",
+      "portfolio": "Portofoliu de îngrijire",
+      "about": "Despre"
+    },
+    "form": {
+      "full_name": "Nume complet",
+      "bio": "Biografie",
+      "service_areas": "Zone de servicii (până la 3)",
+      "add_area": "+ Adaugă zonă",
+      "services": "Servicii Oferite",
+      "rates": "Tarife",
+      "experience_years": "Ani de experiență",
+      "languages": "Limbi Vorbite",
+      "add_language": "+ Adaugă",
+      "portfolio": "Portofoliu de îngrijire (max 6 fotografii)",
+      "saving": "Se salvează…",
+      "save": "Salvează Profilul"
     }
+  },
+  "sitters_page": {
+    "title": "Îngrijitori de animale",
+    "filter_service_area": "Zona de servicii",
+    "filter_service_area_placeholder": "ex. Chișinău",
+    "filter_service_type": "Tip de serviciu",
+    "clear_filters": "Șterge filtrele",
+    "empty_state": "Niciun îngrijitor găsit în {{area}}. Încearcă să extinzi zona.",
+    "empty_state_no_filter": "Niciun îngrijitor disponibil momentan.",
+    "experience_years": "{{count}} an experiență",
+    "experience_years_plural": "{{count}} ani experiență",
+    "review_placeholder": "Fără recenzii încă"
+  },
+  "payment": {
+    "status_pending": "Plată în așteptare",
+    "btn_complete_payment": "Finalizează plata",
+    "success_toast": "Anunțul tău este acum activ!",
+    "cancelled_toast": "Plată anulată. Anunțul rămâne în așteptare.",
+    "standard_price": "Anunț standard — €3",
+    "featured_price": "Anunț promovat — €8"
+  },
+  "featured": {
+    "badge_label": "Promovat",
+    "upgrade_cta": "Promovează anunțul (€5)",
+    "already_featured": "Anunț promovat",
+    "upgrade_success_toast": "Anunțul tău este acum promovat!",
+    "upgrade_cancelled": "Promovare anulată.",
+    "upgrade_price_note": "Promovarea costă €5 (diferența față de anunțul standard de €3)"
   },
   "badge": {
     "verified_label": "Verificat",

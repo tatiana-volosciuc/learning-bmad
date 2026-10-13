@@ -120,7 +120,76 @@
     "sidebar": {
       "my_profile": "My Profile",
       "publish_listing": "Publish Listing"
+    },
+    "service_boarding": "Boarding",
+    "service_dog_walking": "Dog Walking",
+    "service_day_care": "Day Care",
+    "service_drop_in": "Drop-in Visits",
+    "contact_btn": "Contact",
+    "contact_btn_named": "Contact {{name}}",
+    "contact_modal_title": "Send a message to {{name}}",
+    "contact_name_label": "Your name",
+    "contact_email_label": "Your email",
+    "contact_message_label": "Message (min 10, max 1000 characters)",
+    "contact_submitting": "Sending…",
+    "contact_success": "Your message has been sent!",
+    "contact_rate_limited": "Too many messages. Please try again later.",
+    "dashboard_profile_tab": "My Profile",
+    "dashboard_messages_tab": "Messages",
+    "incomplete_banner": "Your profile is incomplete. Complete it to appear in search results.",
+    "no_messages": "No messages yet.",
+    "profile_saved": "Profile saved!",
+    "profile": {
+      "not_found": "Profile not found",
+      "years_experience": "{{n}} years experience",
+      "services": "Services Offered",
+      "rates": "Rates",
+      "languages": "Languages Spoken",
+      "portfolio": "Care Portfolio",
+      "about": "About"
+    },
+    "form": {
+      "full_name": "Full Name",
+      "bio": "Bio",
+      "service_areas": "Service Areas (up to 3)",
+      "add_area": "+ Add area",
+      "services": "Services Offered",
+      "rates": "Rates",
+      "experience_years": "Years of Experience",
+      "languages": "Languages Spoken",
+      "add_language": "+ Add",
+      "portfolio": "Care Portfolio (max 6 photos)",
+      "saving": "Saving…",
+      "save": "Save Profile"
     }
+  },
+  "sitters_page": {
+    "title": "Pet Sitters",
+    "filter_service_area": "Service Area",
+    "filter_service_area_placeholder": "e.g. Chișinău",
+    "filter_service_type": "Service Type",
+    "clear_filters": "Clear Filters",
+    "empty_state": "No sitters found in {{area}}. Try expanding your area.",
+    "empty_state_no_filter": "No sitters available right now.",
+    "experience_years": "{{count}} year experience",
+    "experience_years_plural": "{{count}} years experience",
+    "review_placeholder": "No reviews yet"
+  },
+  "payment": {
+    "status_pending": "Payment Pending",
+    "btn_complete_payment": "Complete Payment",
+    "success_toast": "Your listing is now live!",
+    "cancelled_toast": "Payment cancelled. Your listing is still pending.",
+    "standard_price": "Standard listing — €3",
+    "featured_price": "Featured listing — €8"
+  },
+  "featured": {
+    "badge_label": "Featured",
+    "upgrade_cta": "Upgrade to Featured (€5)",
+    "already_featured": "Featured listing",
+    "upgrade_success_toast": "Your listing is now featured!",
+    "upgrade_cancelled": "Upgrade cancelled.",
+    "upgrade_price_note": "Upgrading costs €5 (the difference from the €3 standard listing)"
   },
   "badge": {
     "verified_label": "Verified",

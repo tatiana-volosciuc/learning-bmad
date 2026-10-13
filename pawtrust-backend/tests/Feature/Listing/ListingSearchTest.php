@@ -137,14 +137,14 @@ class ListingSearchTest extends TestCase
             'breeder_profile_id' => $this->profile->id,
             'status'             => 'active',
             'listing_type'       => 'standard',
-            'featured_until'     => null,
+            'is_featured'        => false,
             'title'              => 'Standard Listing',
         ]);
         Listing::factory()->create([
             'breeder_profile_id' => $this->profile->id,
             'status'             => 'active',
             'listing_type'       => 'featured',
-            'featured_until'     => now()->addDays(7),
+            'is_featured'        => true,
             'title'              => 'Featured Listing',
         ]);
 

@@ -24,9 +24,11 @@ class ListingResource extends JsonResource
             'currency'       => $this->currency,
             'location'       => $this->location ?? $this->breederProfile?->location,
             'status'         => $this->status,
+            'listed_at'      => $this->listed_at,
+            'can_pay'        => $this->status === 'pending_payment',
             'listing_type'   => $this->listing_type,
             'featured_until' => $this->featured_until,
-            'featured'       => $this->featured_until && $this->featured_until->isFuture(),
+            'featured'       => $this->is_featured,
             'photos'         => ListingPhotoResource::collection($this->whenLoaded('photos')),
             // SECURITY: health_certificate_key NEVER included — access controlled post-inquiry
             'health_certificate' => $this->health_certificate_key ? 'on_file' : null,

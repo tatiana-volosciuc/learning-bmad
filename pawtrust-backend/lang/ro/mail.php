@@ -41,4 +41,14 @@ return [
             'cta'           => 'Vezi solicitarea',
         ],
     ],
+
+    'sitter' => [
+        'contact' => [
+            'subject' => 'Mesaj nou prin PawTrust',
+            'title'   => 'Ai primit un mesaj nou',
+            'from'    => 'De la',
+            'message' => 'Mesaj',
+            'cta'     => 'Vezi panoul tău',
+        ],
+    ],
 ];

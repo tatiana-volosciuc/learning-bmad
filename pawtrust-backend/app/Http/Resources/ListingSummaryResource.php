@@ -24,6 +24,9 @@ class ListingSummaryResource extends JsonResource
             'currency'       => $this->currency,
             'location'       => $this->location,
             'status'         => $this->status,
+            'can_pay'        => $this->status === 'pending_payment',
+            'listing_type'   => $this->listing_type,
+            'featured'       => (bool) $this->is_featured,
             'main_photo_url' => $mainPhoto
                 ? $s3Service->presignedUrl($mainPhoto->s3_key, 86400)
                 : null,

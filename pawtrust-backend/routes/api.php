@@ -14,8 +14,16 @@ use App\Http\Controllers\Api\V1\Buyer\SavedListingController;
 use App\Http\Controllers\Api\V1\HealthCertificateController;
 use App\Http\Controllers\Api\V1\InquiryController;
 use App\Http\Controllers\Api\V1\ListingController;
+use App\Http\Controllers\Api\V1\ListingPaymentController;
 use App\Http\Controllers\Api\V1\ListingPhotoController;
+use App\Http\Controllers\Api\V1\ListingUpgradeController;
 use App\Http\Controllers\Api\V1\ReviewController;
+use App\Http\Controllers\Api\V1\Sitter\SitterDashboardController;
+use App\Http\Controllers\Api\V1\SitterDiscoveryController;
+use App\Http\Controllers\Api\V1\Sitter\SitterPortfolioController;
+use App\Http\Controllers\Api\V1\Sitter\SitterProfileController as SitterProfileApiController;
+use App\Http\Controllers\Api\V1\SitterContactController;
+use App\Http\Controllers\Api\V1\StripeWebhookController;
 use App\Http\Controllers\Api\V1\VerificationRequestController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +49,15 @@ Route::prefix('v1')->group(function () {
     // Public breeder/breed routes
     Route::get('/breeders/{id}', [BreederProfileController::class, 'show']);
     Route::get('/breeds',        [BreedController::class, 'index']);
+
+    // Public sitter routes
+    Route::get('/sitters',               [SitterDiscoveryController::class, 'index']);
+    Route::get('/sitters/{id}',          [SitterProfileApiController::class, 'show']);
+    Route::post('/sitters/{id}/contact', [SitterContactController::class, 'contact']);
+
+    // Stripe webhook — public, no auth/CSRF (this app's API routes already carry no CSRF
+    // middleware; Stripe's signature header is the only authentication for this endpoint).
+    Route::post('/webhooks/stripe', [StripeWebhookController::class, 'handle']);
 
     // Public listing routes
     Route::get('/listings',               [ListingController::class, 'index']);
@@ -86,6 +103,8 @@ Route::prefix('v1')->group(function () {
         Route::post('/listings/{listing}/photos',                   [ListingPhotoController::class, 'store']);
         Route::delete('/listings/{listing}/photos/{photo}',         [ListingPhotoController::class, 'destroy']);
         Route::post('/listings/{listing}/health-certificate',       [HealthCertificateController::class, 'store']);
+        Route::post('/listings/{listing}/payment/initiate',         [ListingPaymentController::class, 'initiate']);
+        Route::post('/listings/{listing}/upgrade-to-featured',      [ListingUpgradeController::class, 'upgrade']);
 
         // Breeder inquiry management
         Route::prefix('breeder')->group(function () {
@@ -101,6 +120,16 @@ Route::prefix('v1')->group(function () {
         // Verification requests
         Route::post('/verification-requests',        [VerificationRequestController::class, 'store']);
         Route::get('/verification-requests/status',  [VerificationRequestController::class, 'status']);
+    });
+
+    // Authenticated sitter routes
+    Route::prefix('sitter')->middleware(['auth:sanctum', 'role:sitter'])->group(function () {
+        Route::post('/profile',                  [SitterProfileApiController::class, 'store']);
+        Route::put('/profile',                   [SitterProfileApiController::class, 'update']);
+        Route::get('/profile',                   [SitterProfileApiController::class, 'myProfile']);
+        Route::post('/profile/photos',           [SitterPortfolioController::class, 'store']);
+        Route::delete('/profile/photos/{photo}', [SitterPortfolioController::class, 'destroy']);
+        Route::get('/contact-submissions',       [SitterDashboardController::class, 'contactSubmissions']);
     });
 
     // Admin: document pre-signed URL access
